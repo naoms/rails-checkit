@@ -1,0 +1,6 @@
+<h1>Checklist : <%= @checklist.title %></h1> 
+<%= @checklist.description %>
+<br><br>
+
+<%= link_to "J'ai réalisé toutes les tâches", "/", data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %>
+

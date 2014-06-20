@@ -1,8 +1,13 @@
-<h1> My checklist </h1>
-	<div>
-		1. Checklist hard codée<br> 
-		2. Checklist peut être consultée<br>
-		3. Pivotal tracker mis à jour<br>
-		4. User story vérifié<br>
-		5. Dernière tâche<br>
-	</div>
+
+<h1>All the checklists</h1>
+
+<% n =0 %>
+
+<% @checklists.each do |checklist| %>
+	<%= n = n+1 %>.	
+	<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
+	<b>Description : </b><%= checklist.description %><br>
+	<%=link_to "Démarrer", 'checklists#start'  %><br>
+	<br><br><br>
+
+<% end %>
