@@ -32,7 +32,7 @@ class ChecklistsController < ApplicationController
 
 	def start
 		@checklist = Checklist.find(params[:checklist_id])
-		@checklist.progess = 1 
+		@checklist.progess = '1' 
 		@checklist.save
 		@progress = @checklist.progess.to_i
 	end
@@ -43,7 +43,7 @@ class ChecklistsController < ApplicationController
 		
 
 		if @checklist.save
-			@checklist.progess = 0
+			@checklist.progess = '0'
 			@checklist.save
 			@progress = @checklist.progess.to_i		
 			redirect_to checklist_path(@checklist)
@@ -57,7 +57,7 @@ class ChecklistsController < ApplicationController
     def finish
     	#TODO: Implement method and update button label
     	@checklist = Checklist.find(params[:checklist_id]) 
-    	@checklist.progess = 2 
+    	@checklist.progess = '2' 
     	@checklist.save
 		@progress = @checklist.progess.to_i
     	redirect_to root_path
