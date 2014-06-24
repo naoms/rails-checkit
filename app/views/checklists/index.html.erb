@@ -20,6 +20,8 @@
 			<% else %>
 				<b>Description : </b><%= checklist.description %><br>
 			<% end %>
+			<b>Number of tasks : </b><%= checklist.tasks.count %><br>
+
 			<!-- <b>Status : </b><%= checklist.progess.to_i %><br> -->
 			<%=link_to "Démarrer", checklist_start_path(checklist)  %><br>
 			<br><br>	
@@ -37,8 +39,9 @@
 		<% else %>
 			<b>Description : </b><%= checklist.description %><br>
 		<% end %>
+		<b>Number of tasks : </b><%= checklist.tasks.count %><br>
 		<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
-		<br><br><br>
+		<br><br>
 		</div>
 
 
@@ -52,8 +55,9 @@
 			<% else %>
 				<b>Description : </b><%= checklist.description %><br>
 			<% end %>
+			<b>Number of tasks : </b><%= checklist.tasks.count %><br>
 			<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
-			<br><br><br>
+			<br><br>
 		</div>
 
 

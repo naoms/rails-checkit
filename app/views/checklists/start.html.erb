@@ -16,7 +16,8 @@
 	Description : <%= @checklist.description %><br><br>
 	Tache :   <br><br> 
 	 	<% @checklist.tasks.each do |task| %>
- 		<%= check_box("checklist.task", "status" )  %>
+ 		<!-- check_box("checklist.task", "status" )   -->
+ 		<%= check_box_tag task.status, checked_value = task.status?, unchecked_value = !(task.status?) %>
  		<%= label_tag task.description %><br>
  	<% end %>
 	<br><br>
@@ -26,7 +27,8 @@
   Tache :   <br><br> 
  	<% @checklist.tasks.each do |task| %>
  		
- 		<%= check_box_tag(task.status) %>
+ 		<%= check_box_tag task.status, checked_value = task.status?, unchecked_value = !(task.status?), checked_value => false %>
+
 
 		<%= label_tag(task.status, task.description ) %>
 		 <!-- check_box_tag "like[category_ids][]", category.id, @like.categories.include?(category)  -->
@@ -36,7 +38,9 @@
  	
  	<% end %>
 
- 	<br><br>
  	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
+ <br><br>
+ 	
+ 	
  <% end %>
 
