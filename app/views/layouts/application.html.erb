@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CheckITV2</title>
+  <title>CheckIT</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<nav class="navbar navbar-inverse" role="navigation">
+  <ul class="nav nav-pills">
+  <li class="active"><a href="/">Home</a></li>
+  <li><a href="/checklists/new">Create new Checklist</a></li>
+  <li><a href="/checklists/mytestchecklist">Nouvel Arrivant</a></li>
+</ul>
+</nav>
+
+
+
+<div class="container">
+	<%= yield %>
+</div>
 
 </body>
 </html>

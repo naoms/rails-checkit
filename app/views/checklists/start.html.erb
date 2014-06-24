@@ -1,6 +1,35 @@
-<h1>Checklist : <%= @checklist.title %></h1> 
-<%= @checklist.description %>
-<br><br>
+<h1>Checklist : <%= @checklist.title %></h1>
+<%= image_tag "inProgress.png", size: "40x40"  %><br><br>
 
-<%= link_to "J'ai réalisé toutes les tâches", "/", data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %>
+
+ 
+<% if @checklist.tasks.count == 0 && @checklist.description == nil %>    
+    
+    No tasks 
+
+<% elsif  @checklist.tasks.count == 0 && @checklist.description != nil %> 
+	Description : <%= @checklist.description %><br>
+	<br><br>
+	<%= button_to "J'ai suivis la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
+
+<% elsif  @checklist.tasks.count > 0 && @checklist.description != nil %> 
+	Description : <%= @checklist.description %><br><br>
+	Tache :   <br><br> 
+	 	<% @checklist.tasks.each do |tache| %>
+ 		<%= check_box("taches", "new" ) %>
+ 		<%= label_tag tache.description %><br>
+ 	<% end %>
+	<br><br>
+	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklists currentes'} %> 
+
+  <% elsif @checklist.tasks.count > 0 && @checklist.description == nil %>    
+  Tache :   <br><br> 
+ 	<% @checklist.tasks.each do |tache| %>
+ 		<%= check_box("taches", "new" ) %>
+ 		<%= tache.description %><br>
+ 	<% end %>
+
+ 	<br><br>
+ 	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
+ <% end %>
 

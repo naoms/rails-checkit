@@ -1,2 +1,33 @@
-<h1>Taches#new</h1>
-<p>Find me in app/views/taches/new.html.erb</p>
+<h1>Créer les taches</h1>
+
+ <%= form_for @tache do |f| %>
+
+		    <% if @tache.errors.any? %>
+          <h2><%= pluralize(@tache.errors.count, "error") %> prohibite this tache from being saved: </h2> 
+          <ul>
+          <% @tache.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+          </ul>
+        <% end %>
+
+        <h2><%= f.label :description %></h2>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+        <%= check_box("taches", "new" ) %>
+        <%= f.text_field :description %><br>
+
+
+        <%= f.submit 'Enregistrer cette nouvelle tache' %>
+
+ <% end %> 

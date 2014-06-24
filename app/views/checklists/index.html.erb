@@ -3,11 +3,62 @@
 
 <% n =0 %>
 
+<div class="row">
 <% @checklists.each do |checklist| %>
-	<%= n = n+1 %>.	
-	<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
-	<b>Description : </b><%= checklist.description %><br>
-	<%=link_to "Démarrer", 'checklists#start'  %><br>
-	<br><br><br>
+
+	<% if n%3 == 0  %>
+			</div><div class="row">
+		<% end %>
+
+	<% if checklist.progess == 0 %>  <!-- if checklist created -->
+		<div class="col-md-4">
+			<%= n = n+1 %>.	
+			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %>
+			<%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br>
+			<% if checklist.description.blank? %>
+				no description <br>
+			<% else %>
+				<b>Description : </b><%= checklist.description %><br>
+			<% end %>
+			<!-- <b>Status : </b><%= checklist.progess.to_i %><br> -->
+			<%=link_to "Démarrer", checklist_start_path(checklist)  %><br>
+			<br><br>	
+		</div>
+
+	
+
+	<% elsif checklist.progess == 1 %>   <!-- if checklist started -->
+		<div class="col-md-4">
+		<%= n = n+1 %>.	
+		<b>Title : </b><%=link_to checklist.title, checklist_start_path(checklist) %>
+		<%= link_to image_tag("inProgress.png" , size: "30x30"), checklist_start_path(checklist) %><br>
+		<% if checklist.description.blank? %>
+				no description <br>
+		<% else %>
+			<b>Description : </b><%= checklist.description %><br>
+		<% end %>
+		<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
+		<br><br><br>
+		</div>
+
+
+	<% elsif checklist.progess == 2 %>   <!-- if checklist finished -->
+		<div class="col-md-4">
+			<%= n = n+1 %>.	
+			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %>
+			<%= link_to image_tag( "ObjectifAtteinds.jpeg", size: "35x35"), checklist_path(checklist) %><br>
+			<% if checklist.description.blank? %>
+				no description <br>
+			<% else %>
+				<b>Description : </b><%= checklist.description %><br>
+			<% end %>
+			<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
+			<br><br><br>
+		</div>
+
+
+	<% end %>
 
 <% end %>
+</div>
+

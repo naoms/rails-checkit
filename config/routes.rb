@@ -11,11 +11,19 @@ Rails.application.routes.draw do
 
   get 'taches/new'
 
-  match 'checklists/start/:id' => 'checklists#start', via: [:get]
+  #match 'checklists/start/:id' => 'checklists#start', via: [:get]
+  #get 'checklists/start/:id', to: 'checklists#start'
 
-  resources :checklists
+  resources :checklists do
+    get 'start'
+    post 'finish'
+    resources :tasks 
+    get 'new_tasks'     
+  end
 
-  resources :taches
+
+resources :taches
+  
 
   
 

@@ -1,0 +1,104 @@
+<%= form_for [@checklist, @checklist.tasks.build] do |a| %>
+
+<div class="form-group">
+  <% a.label :description1 %>
+  <%= a.text_field :description, class: "form-control" %>
+</div>
+
+  <p>
+    <%= a.submit %>
+  </p>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+
+
+
+
+
+<%= form_for [@checklist, @checklist.tasks.build] do |a| %>
+
+<div class="form-group">
+  <% a.label :description1 %>
+  <%= a.text_field :description, class: "form-control" %>
+</div>
+
+  <p>
+    <%= a.submit %>
+  </p>
+<% end %>
+
+
+
+
+
+
+
+
+<%= form_for [@checklist, @checklist.tasks.build] do |a| %>
+<h2>Tasks</h2>
+
+<div class="form-group">
+<% @checklist.tasks.each_with_index do |task, index| %>
+  <%= a.fields_for "tasks[#{index}]", task do |f| %>
+    <p><%= f.text_field :description, class: "form-control" %></p>
+  <% end %>
+ <% end %>
+</div>
+
+  <p>
+    <%= a.submit ' Créer ces nouvelles taches'  %>
+  </p>
+<% end %>
+
+
+
+
+
+<%= form_for @checklist do |f| %>
+
+
+
+        <% if @checklist.errors.any? %>
+          <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
+          <ul>
+          <% @checklist.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+          </ul>
+        <% end %>
+
+         <div class="form-group">
+         <%= f.label :title %></h2>
+        <%= f.text_field :title %>
+        </div>
+
+        <div class="form-group">
+        Add a description to your Checklist : 
+          <% f.label :description %>
+          <%= f.text_field :description, class: "form-control" %>
+        </div>
+
+  <%= f.fields_for :tasks, [Task.new]*10 do |task| %>
+    <%= task.text_field :description %>
+  <% end %>
+  <%= f.submit ' Créer ces nouvelles taches'  %>
+<% end %>
+
+
+
+
+
+
+
+<% end %>
+
