@@ -14,25 +14,30 @@ Rails.application.routes.draw do
   #match 'checklists/start/:id' => 'checklists#start', via: [:get]
   #get 'checklists/start/:id', to: 'checklists#start'
 
-  resources :checklists do
-    get 'start'
-    post 'finish'
-    resources :tasks 
-    get 'new_tasks'     
+
+    resources :checklists  do 
+        get 'start'
+        post 'finish' 
+        resources :tasks
+        get 'new_tasks'     
+    end
+
+
+
+if false
+
+     
+  namespace :api, defaults: {format: :json}  do
+    resources :checklists  do 
+        get 'start'
+        post 'finish' 
+        resources :tasks
+        get 'new_tasks'     
+    end
   end
-
-
-resources :taches
   
 
-  
-
-
-
-
-
-
-
+end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

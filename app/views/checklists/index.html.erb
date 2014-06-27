@@ -12,7 +12,7 @@
 
 	<% if checklist.progess == 0 %>  <!-- if checklist created -->
 		<div class="col-md-4">
-			<%= n = n+1 %>.	
+			<%= n = n+1 %>.
 			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %>
 			<%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br>
 			<% if checklist.description.blank? %>

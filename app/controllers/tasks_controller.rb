@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     redirect_to checklist_path(@checklist)
     else
      redirect_to '/checklists/mytestchecklist'
-    end
+   end
 
    #  @checklist = Checklist.new(params[:checklist])
    #  @task = @checklist.tasks.build(params[:task_params])
@@ -22,8 +22,13 @@ class TasksController < ApplicationController
    #  else
    #   redirect_to '/checklists/mytestchecklist'
    #  end
+   render json: task, status: 201
 
+  end
 
+    def update
+    task.update_attributes(safe_params)
+    render nothing: true, status: 204
   end
 
 

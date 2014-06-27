@@ -26,13 +26,17 @@
   <% elsif @checklist.tasks.count > 0 && @checklist.description.blank? %>    
   Tache :   <br><br> 
  	<% @checklist.tasks.each do |task| %>
- 		
- 		<%= check_box_tag task.status, checked_value = task.status?, unchecked_value = !(task.status?), checked_value => false %>
-
-
+		<%= check_box_tag task.status, checked_value = false %>
 		<%= label_tag(task.status, task.description ) %>
+		<% task.status = false %>
+ 		<% if false %>
+	 		<% if checkbox checked %>
+	 			<%= check_box_tag task.status, checked_value = (task.status=true) %>
+	 		<% elsif checkbox unchecked  %>
+	 			<%= check_box_tag task.status, checked_value = false %>
+	 		<% end %>
+ 		<% end %>
 		 <!-- check_box_tag "like[category_ids][]", category.id, @like.categories.include?(category)  -->
-
 		 <!-- http://stackoverflow.com/questions/12650017/rails-keeping-checkboxes-checked-on-reload-and-redirect-to -->
 			<br><br>
  	
