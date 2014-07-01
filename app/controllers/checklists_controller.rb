@@ -2,7 +2,8 @@
 class ChecklistsController < ApplicationController
 
 	def index
-		@checklists = Checklist.all
+		@checklists = Checklist.all.order("checklists.updated_at desc")
+
 	end
 
 
@@ -25,6 +26,14 @@ class ChecklistsController < ApplicationController
 	def show
 		@checklist = Checklist.find(params[:id]) 
 		@tasks = Task.all
+		case @checklist.progess
+	    when 0
+			render 'show_unstarted.html.erb'
+		when 1
+			render 'show_started.html.erb'
+		else
+			render 'show.html.erb'
+		end
 	end
 
 	def mychecklist
@@ -32,15 +41,26 @@ class ChecklistsController < ApplicationController
 
 	def start
 		@checklist = Checklist.find(params[:checklist_id])
-		@checklist.progess = '1' 
+		# @checklist.timeStarted = DateTime.now.to_formatted_s(:long_ordinal)
+		# @checklist.timeStarted
+		# @checklist.save
+		@checklist.progess = '0' 
 		@checklist.save
 		@progress = @checklist.progess.to_i
+		
+		@checklist_copie= @checklist.clone
+		@checklist_copie.timeStarted = DateTime.now.to_formatted_s(:long_ordinal)
+		@checklist_copie.timeStarted
+		@checklist_copie.progess = '1' 
+		@checklist_copie.save
+		@progress_copie = @checklist_copie.progess.to_i
+
+		redirect_to checklist_path(@checklist)
 	end
 
 	def create
 		@checklist = Checklist.new(checklist_params)
 
-		
 
 		if @checklist.save
 			@checklist.progess = '0'
@@ -53,10 +73,22 @@ class ChecklistsController < ApplicationController
 		end
 	end
 
+	def update
+		@checklist = Checklist.find(params[:id])
+		if @checklist.update(checklist_params)
+			@checklist.save
+			redirect_to checklist_start_path(@checklist)
+		else
+			render 'edit'
+		end
+	end
+
 
     def finish
     	#TODO: Implement method and update button label
-    	@checklist = Checklist.find(params[:checklist_id]) 
+    	@checklist = Checklist.find(params[:checklist_id])
+    	@checklist.timeFinished = DateTime.now.to_formatted_s(:long_ordinal) 
+    	@checklist.save
     	@checklist.progess = '2' 
     	@checklist.save
 		@progress = @checklist.progess.to_i
@@ -66,7 +98,7 @@ class ChecklistsController < ApplicationController
 
 	private
 	def checklist_params
-		params.require(:checklist).permit(:title, :description, :status	)
+		params.require(:checklist).permit(:title, :description, :status, :createur)
 	end
 
 end

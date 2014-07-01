@@ -1,0 +1,60 @@
+<div class="container">
+<h1>Checklist : <%= @checklist.title %></h1>
+<%= image_tag "inProgress.png", size: "40x40"  %><br><br>
+
+<div class="personne">
+ 	<% if @checklist.createur != nil %>
+		<h6 id="createur" font-size:"1">Créée par : <%= @checklist.createur %></h6>
+	<% end %>
+	<% if @checklist.garant != nil %>
+		<h6 id="garant" font-size:"1">Démarrée par : <%= @checklist.garant %></h6>
+	<% end %>
+	<br><br>
+</div>
+ 
+<% if @checklist.tasks.count == 0 && @checklist.description.blank? %>    
+    
+    No tasks 
+
+<% elsif  @checklist.tasks.count == 0 && !(@checklist.description.blank?) %> 
+	Description : <%= @checklist.description %><br>
+	<br><br>
+	<%= button_to "J'ai suivis la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
+
+<% elsif  @checklist.tasks.count > 0 && !(@checklist.description.blank?) %> 
+	Description : <%= @checklist.description %><br><br>
+	Tache :   <br><br> 
+	 	<% @checklist.tasks.each do |task| %>
+ 		<!-- check_box("checklist.task", "status" )   -->
+ 		<%= check_box_tag task.status, checked_value = task.status?, unchecked_value = !(task.status?) %>
+ 		<%= label_tag task.description %><br>
+ 	<% end %>
+	<br><br>
+	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklists currentes'} %> 
+
+  <% elsif @checklist.tasks.count > 0 && @checklist.description.blank? %>    
+  Tache :   <br><br> 
+ 	<% @checklist.tasks.each do |task| %>
+		<%= check_box_tag task.status, checked_value = false %>
+		<%= label_tag(task.status, task.description ) %>
+		<% task.status = false %>
+ 		<% if false %>
+	 		<% if checkbox checked %>
+	 			<%= check_box_tag task.status, checked_value = (task.status=true) %>
+	 		<% elsif checkbox unchecked  %>
+	 			<%= check_box_tag task.status, checked_value = false %>
+	 		<% end %>
+ 		<% end %>
+		 <!-- check_box_tag "like[category_ids][]", category.id, @like.categories.include?(category)  -->
+		 <!-- http://stackoverflow.com/questions/12650017/rails-keeping-checkboxes-checked-on-reload-and-redirect-to -->
+			<br><br>
+ 	
+ 	<% end %>
+
+ 	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
+ <br><br>
+ 	
+ 	
+ <% end %>
+
+</div>

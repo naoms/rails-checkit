@@ -1,0 +1,57 @@
+<h1>Checklist : <%= @checklist.title %></h1> 
+
+	<% if @checklist.progess == 0 %>
+		<%= image_tag "start.png", size: "40x40"  %>
+	<% elsif @checklist.progess == 1 %>
+		<%= image_tag "inProgress.png", size: "40x40"  %>
+	<% elsif @checklist.progess == 2 %>
+		<%= image_tag "ObjectifAtteinds.jpeg", size: "40x40"  %>
+	<% end %>
+
+	<br><br>
+		
+		
+
+<% if @checklist.tasks.count == 0 && @checklist.description.blank? %>    
+    
+    No tasks and no description 
+
+<% elsif  @checklist.tasks.count == 0 && !(@checklist.description.blank?) %> 
+	Description : <%= @checklist.description %><br>
+	
+<% elsif  @checklist.tasks.count > 0 && !(@checklist.description.blank?) %> 
+<% n =0 %>
+	Description : <%= @checklist.description %><br><br>
+	Tache :   <br><br> 
+
+	 	<% @checklist.tasks.each do |tache| %>
+ 		<%= n= n+1 %>. 
+ 		<%= tache.description %><br>
+ 		
+ 	<% end %>
+
+
+  <% elsif @checklist.tasks.count > 0 && @checklist.description.blank? %>    
+  Tache :   <br><br> 
+  <% n = 0 %>
+ 	<% @checklist.tasks.each do |tache| %>
+ 	<!-- 	<%= check_box("taches", "new" )	%> -->
+ 		
+ 		<%= n= n+1 %>. 
+ 		<%= tache.description %><br>
+ 	<% end %>
+ <% end %>
+
+
+<br><br>
+
+<% if @checklist.progess == 0 %>
+	<%= render 'tasks/form' %>
+	<%= link_to "Démarrer", checklist_start_path(@checklist) %><br>
+<% elsif @checklist.progess == 1 %>
+	<%= link_to "Add taches", checklist_new_tasks_path(@checklist) %>
+<% elsif @checklist.progess == 2 %>
+	<h2>Objectif atteint</h2>
+<% end %>
+		
+

@@ -1,0 +1,103 @@
+div.row#created{
+	background-color: rgba(51,204,255, 0.3);
+	padding-left: 100px;
+	border-radius: 0px;
+}
+
+div.col-md-6#enCours{
+	background-color: grey ;
+	padding-left: 100px;
+	padding-right: 40px;
+}
+
+div.col-md-6#terminée{
+	background-color: beige;
+	padding-left: 100px;
+	padding-right: 50px;
+}
+
+div.col-md-3#created{
+	background-color: beige;
+	margin: 5px;
+	border:0px;
+	padding-top: 5px;
+	padding-left: 30px; 
+	padding-bottom: 0px;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: black;
+}
+div#created{
+	background-color: beige;
+	margin: 5px;
+	border:0px;
+	padding-top: 5px;
+	padding-left: 30px; 
+	padding-bottom: 0px;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: black;
+}
+
+
+div.col-md-3#started{
+	background-color: beige;
+	margin: 5px;
+	border:0px;
+	padding-top: 5px;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: black;
+}
+
+div#started{
+	background-color: beige;
+	margin: 5px;
+	border:0px;
+	padding-top: 5px;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: black;
+}
+
+
+div.col-md-3#finished{
+	background-color: rgba(51,204,255, 0.3);
+	margin: 5px;
+	border:0px;
+	padding-top: 5px;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: black;
+}
+
+div#finished{
+	background-color: rgba(51,204,255, 0.3);
+	margin: 5px;
+	border:0px;
+	padding-top: 5px;
+	border-radius: 25px;
+	border-style: groove;
+	border-color: black;
+}
+
+div#timeFinished{
+	text-align: left;	
+
+}
+
+h6#createur{
+	text-align: right;
+	padding-bottom: 0	px;
+}
+
+div.container#createNewCl{
+	background-color: beige;
+	padding: 20px;
+}
+
+div.personne{
+	right: 5px;
+	top: 20px;
+
+}

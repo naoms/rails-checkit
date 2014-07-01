@@ -1,8 +1,9 @@
 
-<h1>All the checklists</h1>
 
 <% n =0 %>
-
+<div class="row" id="created">
+<div class="container">
+<h1>Checklists/Templates</h1><br><br>
 <div class="row">
 <% @checklists.each do |checklist| %>
 
@@ -11,58 +12,131 @@
 		<% end %>
 
 	<% if checklist.progess == 0 %>  <!-- if checklist created -->
-		<div class="col-md-4">
-			<%= n = n+1 %>.
-			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %>
-			<%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br>
+		<div class="col-md-3" id="created" >
+			<% n = n+1 %>
+			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
+			<!-- <%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br> -->
 			<% if checklist.description.blank? %>
 				no description <br>
 			<% else %>
 				<b>Description : </b><%= checklist.description %><br>
 			<% end %>
-			<b>Number of tasks : </b><%= checklist.tasks.count %><br>
-
 			<!-- <b>Status : </b><%= checklist.progess.to_i %><br> -->
 			<%=link_to "Démarrer", checklist_start_path(checklist)  %><br>
-			<br><br>	
+			<br>
+			<% if checklist.createur != nil %>
+				<h6 id="createur" font-size:"1" ><i>Créée par <%= checklist.createur%></i></h6>
+			<% end %><br>	
 		</div>
-
-	
-
-	<% elsif checklist.progess == 1 %>   <!-- if checklist started -->
-		<div class="col-md-4">
-		<%= n = n+1 %>.	
-		<b>Title : </b><%=link_to checklist.title, checklist_start_path(checklist) %>
-		<%= link_to image_tag("inProgress.png" , size: "30x30"), checklist_start_path(checklist) %><br>
-		<% if checklist.description.blank? %>
-				no description <br>
-		<% else %>
-			<b>Description : </b><%= checklist.description %><br>
-		<% end %>
-		<b>Number of tasks : </b><%= checklist.tasks.count %><br>
-		<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
-		<br><br>
-		</div>
-
-
-	<% elsif checklist.progess == 2 %>   <!-- if checklist finished -->
-		<div class="col-md-4">
-			<%= n = n+1 %>.	
-			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %>
-			<%= link_to image_tag( "ObjectifAtteinds.jpeg", size: "35x35"), checklist_path(checklist) %><br>
-			<% if checklist.description.blank? %>
-				no description <br>
-			<% else %>
-				<b>Description : </b><%= checklist.description %><br>
-			<% end %>
-			<b>Number of tasks : </b><%= checklist.tasks.count %><br>
-			<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
-			<br><br>
-		</div>
-
-
 	<% end %>
 
 <% end %>
+	</div>
+<br><br>
+
 </div>
+
+</div>
+
+<div class="row">
+
+
+	<div class = "col-md-6" id="enCours">
+	<br><br>
+	<h1 align="left" >Checklist en cours</h1><br><br>
+
+
+		<% n =0 %>
+		<div class="row">
+		<% @checklists.each do |checklist| %>	
+
+			<% if n%3 == 0  %>
+					</div><div class="row">
+				<% end %>
+
+
+			<% if checklist.progess == 1 %>   <!-- if checklist started -->
+				<div class="col-md-3" id="started">
+				<% n = n+1 %>	
+				<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
+				<!-- <%= link_to image_tag("inProgress.png" , size: "30x30"), checklist_start_path(checklist) %><br> -->
+				<% if checklist.description.blank? %>
+						no description <br>
+				<% else %>
+					<b>Description : </b><%= checklist.description %><br>
+				<% end %>
+				<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
+				<% if checklist.timeStarted != nil %>
+				<h6 font-size:"1"><i>Démarrée le <%= checklist.timeStarted.to_formatted_s(:short) %></i></h6>
+				<% end %>
+				<% if checklist.garant != nil %>
+				<h6 id="garant" font-size:"1"> par  <%= checklist.garant %></h6>
+				<% end %>
+				<% if checklist.createur != nil %>
+				<h6 id="createur" font-size:"1">Créée par  <%= checklist.createur %></h6>
+				<% end %>
+				<br>
+					</div>
+			<% end %>
+
+		<% end %>
+		</div>
+	</div>
+
+
+	<div class = "col-md-6" id="terminée">
+	<br><br>
+	<h1 align="left" >Checklist terminée</h1><br><br>
+	
+		<% n =0 %>
+		<div class="row">
+		<% @checklists.each do |checklist| %>
+
+			<% if n%3 == 0  %>
+					</div><div class="row">
+				<% end %>
+
+			<% if checklist.progess == 2 %>   <!-- if checklist finished -->
+				<div class="col-md-3" id="finished" >
+					<% n = n+1 %>
+					<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
+					<!-- <%= link_to image_tag( "ObjectifAtteinds.jpeg", size: "35x35"), checklist_path(checklist) %><br> -->
+					<% if checklist.description.blank? %>
+						no description <br>
+					<% else %>
+						<b>Description : </b><%= checklist.description %><br>
+					<% end %>
+					<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
+					<% if checklist.timeStarted != nil %>
+						<div id="timeFinished">
+						<h6 font-size:"1"><i>Démarrée le <%= checklist.timeStarted.to_formatted_s(:short) %></i></h6>
+					</div>
+					<% end %>
+					<% if checklist.timeFinished != nil %>
+						<h6 font-size:"1"><i>Terminée le <%= checklist.timeFinished.to_formatted_s(:short) %></i></h6>
+					<% end %>
+					<% if checklist.garant != nil %>
+						<h6 id="garant" font-size:"1" ><i> par  <%= checklist.garant%></i></h6>
+					<% end %>
+					<% if checklist.createur != nil %>
+						<h6 id="createur" font-size:"1">Créée par <%= checklist.createur %></h6>
+					<% end %>
+					<br>	
+					<br><br>
+				</div>
+
+
+			<% end %>
+
+		<% end %>
+		</div>
+	</div>	
+
+	
+</div>
+
+
+
+
+
 

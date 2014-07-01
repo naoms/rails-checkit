@@ -1,3 +1,4 @@
+<div class="container" id="createNewCl">
 <h1>Créer une nouvelle check-list</h1>
 
 
@@ -23,6 +24,11 @@
         Add a description to your Checklist : 
           <% f.label :description %>
           <%= f.text_field :description, class: "form-control" %>
+        </div>
+        <div class="form-group">
+        Créé par : 
+          <% f.label :createur %>
+          <%= f.text_field :createur, class: "form-control" %>
         </div>
       Tasks : 
       <% n = 0 %>
@@ -91,3 +97,5 @@
 
 
 <% end %>
+
+</div>

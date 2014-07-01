@@ -22,7 +22,9 @@ class TasksController < ApplicationController
    #  else
    #   redirect_to '/checklists/mytestchecklist'
    #  end
-   render json: task, status: 201
+
+
+   # render json: task, status: 201
 
   end
 
