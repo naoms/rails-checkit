@@ -1,49 +1,43 @@
+
+    <header>CREER UNE CHECKLIST</header>
+
+
 <div class="container" id="createNewCl">
-<h1>Créer une nouvelle check-list</h1>
-
-
-<%= form_for @checklist do |f| %>
-
-
-
-        <% if @checklist.errors.any? %>
-          <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
-          <ul>
-          <% @checklist.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-          <% end %>
-          </ul>
-        <% end %>
-
-         <div class="form-group">
-         <%= f.label :title %></h2>
-        <%= f.text_field :title, :autofocus=>true, :autocomplete=>"off" %>
-        </div>
-
-        <div class="form-group">
-        Add a description to your Checklist : 
-          <% f.label :description %>
-          <%= f.text_field :description, class: "form-control" %>
-        </div>
-        <div class="form-group">
-        Créé par : 
-          <% f.label :createur %>
-          <%= f.text_field :createur, class: "form-control" %>
-        </div>
-      Tasks : 
-      <% n = 0 %>
-  <%= f.fields_for :tasks, [Task.create]*10 do |task| %>
-    <div class="form-group">
-      <div class: "form-control">
-      <%= n = n+1 %>
-      <%= task.text_field :description %>
-     </div>
+  <%= form_for @checklist do |f| %>
+    <% if @checklist.errors.any? %>
+      <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
+      <ul>
+      <% @checklist.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    <div id="name" type="text">
+      <% f.label :title %></h2><br>
+      <%= f.text_field :title, :autofocus=>true, :autocomplete=>"off",:placeholder => "TITLE"%>
+    </div>
+    <div id="name" type="text">
+      <% f.label :description %>
+      <%= f.text_field :description, :placeholder => " Add a description to your Checklist" %>
+    </div>
+    <div id="message" type="text">
+      <% f.label :createur %>
+      <%= f.text_field :createur, :placeholder => "Createur" %>
+    </div> 
+<!--     <% n = 0 %>
+    <%= f.fields_for :tasks, [Task.create]*1 do |task| %>
+      <div id="email" type="text" placeholder="E-MAIL">
+        <div id="name" type="text">
+          <% n = n+1 %>
+          <%= task.text_field :description, :placeholder=>"Enter first task" %>
+       </div>
+      </div>
+    <% end %> -->
+    <div id="submit" type="submit" >
+      <%= f.submit ' Add tasks to checklist'   %>
     </div>
   <% end %>
-  <%= f.submit ' Enregistrer cette nouvelle checklist'   %>
-<% end %>
-
-
+</div>
 
 
 

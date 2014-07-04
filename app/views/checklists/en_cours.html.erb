@@ -1,0 +1,57 @@
+
+<ul class="nav nav-tabs" role="tablist">
+  <li><a href="/checklists/en_cours">En cours</a></li>
+  <li><a href="/checklists/terminees">Terminée</a></li>
+</ul>
+
+
+<div class="row">
+
+
+	<div class="container">
+	<br><br>
+	<h1 align="left" >Checklist en cours</h1><br><br>
+
+
+		<% n =0 %>
+		<div class="row">
+		<% @checklists.each do |checklist| %>	
+
+			<% if n%3 == 0  %>
+					</div><div class="row">
+				<% end %>
+
+
+			<% if checklist.progess == 1 %>   <!-- if checklist started -->
+				<div class="col-md-3" id="started">
+				<% n = n+1 %>	
+				<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
+				<!-- <%= link_to image_tag("inProgress.png" , size: "30x30"), checklist_start_path(checklist) %><br> -->
+				<% if checklist.description.blank? %>
+						no description <br>
+				<% else %>
+					<b>Description : </b><%= checklist.description %><br>
+				<% end %>
+				<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
+				<% if checklist.timeStarted != nil %>
+				<h6 font-size:"1"><i>Démarrée le <%= checklist.timeStarted.to_formatted_s(:short) %></i></h6>
+				<% end %>
+				<% if checklist.garant != nil %>
+				<h6 id="garant" font-size:"1"> par  <%= checklist.garant %></h6>
+				<% end %>
+				<% if checklist.createur != nil %>
+				<h6 id="createur" font-size:"1">Créée par  <%= checklist.createur %></h6>
+				<% end %>
+				<br>
+				<%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
+		              method: :delete,
+		             data: { confirm: 'Are you sure?' } %>
+					</div>
+			<% end %>
+
+		<% end %>
+		</div>
+	</div>
+</div>
+
+

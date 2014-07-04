@@ -1,94 +1,15 @@
 
+<ul class="nav nav-tabs" role="tablist">
+  <li><a href="/checklists/en_cours">En cours</a></li>
+  <li><a href="/checklists/terminees">Terminée</a></li>
+</ul>
+
+
 
 <% n =0 %>
 <div class="row" id="created">
-<div class="container">
-<h1>Checklists/Templates</h1><br><br>
-<div class="row">
-<% @checklists.each do |checklist| %>
-
-	<% if n%3 == 0  %>
-			</div><div class="row">
-		<% end %>
-
-	<% if checklist.progess == 0 %>  <!-- if checklist created -->
-		<div class="col-md-3" id="created" >
-			<% n = n+1 %>
-			<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
-			<!-- <%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br> -->
-			<% if checklist.description.blank? %>
-				no description <br>
-			<% else %>
-				<b>Description : </b><%= checklist.description %><br>
-			<% end %>
-			<!-- <b>Status : </b><%= checklist.progess.to_i %><br> -->
-			<%=link_to "Démarrer", checklist_start_path(checklist)  %><br>
-			<br>
-			<% if checklist.createur != nil %>
-				<h6 id="createur" font-size:"1" ><i>Créée par <%= checklist.createur%></i></h6>
-			<% end %><br>	
-		</div>
-	<% end %>
-
-<% end %>
-	</div>
-<br><br>
-
-</div>
-
-</div>
-
-<div class="row">
-
-
-	<div class = "col-md-6" id="enCours">
-	<br><br>
-	<h1 align="left" >Checklist en cours</h1><br><br>
-
-
-		<% n =0 %>
-		<div class="row">
-		<% @checklists.each do |checklist| %>	
-
-			<% if n%3 == 0  %>
-					</div><div class="row">
-				<% end %>
-
-
-			<% if checklist.progess == 1 %>   <!-- if checklist started -->
-				<div class="col-md-3" id="started">
-				<% n = n+1 %>	
-				<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
-				<!-- <%= link_to image_tag("inProgress.png" , size: "30x30"), checklist_start_path(checklist) %><br> -->
-				<% if checklist.description.blank? %>
-						no description <br>
-				<% else %>
-					<b>Description : </b><%= checklist.description %><br>
-				<% end %>
-				<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
-				<% if checklist.timeStarted != nil %>
-				<h6 font-size:"1"><i>Démarrée le <%= checklist.timeStarted.to_formatted_s(:short) %></i></h6>
-				<% end %>
-				<% if checklist.garant != nil %>
-				<h6 id="garant" font-size:"1"> par  <%= checklist.garant %></h6>
-				<% end %>
-				<% if checklist.createur != nil %>
-				<h6 id="createur" font-size:"1">Créée par  <%= checklist.createur %></h6>
-				<% end %>
-				<br>
-					</div>
-			<% end %>
-
-		<% end %>
-		</div>
-	</div>
-
-
-	<div class = "col-md-6" id="terminée">
-	<br><br>
-	<h1 align="left" >Checklist terminée</h1><br><br>
-	
-		<% n =0 %>
+	<div class="container">
+	<h1>Checklists/Templates</h1><br><br>
 		<div class="row">
 		<% @checklists.each do |checklist| %>
 
@@ -96,47 +17,97 @@
 					</div><div class="row">
 				<% end %>
 
-			<% if checklist.progess == 2 %>   <!-- if checklist finished -->
-				<div class="col-md-3" id="finished" >
+			<% if checklist.progess == 0 %>  <!-- if checklist created -->
+				<div class="col-md-3" id="created" >
 					<% n = n+1 %>
 					<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
-					<!-- <%= link_to image_tag( "ObjectifAtteinds.jpeg", size: "35x35"), checklist_path(checklist) %><br> -->
+					<!-- <%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br> -->
 					<% if checklist.description.blank? %>
 						no description <br>
 					<% else %>
 						<b>Description : </b><%= checklist.description %><br>
 					<% end %>
-					<!-- <b>Status : </b><%= checklist.progess.to_i  %><br> -->
-					<% if checklist.timeStarted != nil %>
-						<div id="timeFinished">
-						<h6 font-size:"1"><i>Démarrée le <%= checklist.timeStarted.to_formatted_s(:short) %></i></h6>
-					</div>
-					<% end %>
-					<% if checklist.timeFinished != nil %>
-						<h6 font-size:"1"><i>Terminée le <%= checklist.timeFinished.to_formatted_s(:short) %></i></h6>
-					<% end %>
-					<% if checklist.garant != nil %>
-						<h6 id="garant" font-size:"1" ><i> par  <%= checklist.garant%></i></h6>
-					<% end %>
+					<!-- <b>Status : </b><%= checklist.progess.to_i %><br> -->
+					<%= link_to "Démarrer", checklist_path(checklist)  %><br>
+					<br>
 					<% if checklist.createur != nil %>
-						<h6 id="createur" font-size:"1">Créée par <%= checklist.createur %></h6>
-					<% end %>
-					<br>	
-					<br><br>
+						<h6 id="createur" font-size:"1" ><i>Créée par <%= checklist.createur%></i></h6>
+					<% end %><br>
+					<%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
+				              method: :delete,
+				             data: { confirm: 'Are you sure?' } %> 	
 				</div>
-
-
 			<% end %>
 
 		<% end %>
-		</div>
-	</div>	
+	</div>
+	<br><br>
 
-	
+	</div>
+
 </div>
 
+ <% if false %>
+
+
+<!-- PRIT DU SITE SITE POINT !!!! -->
+
+<link rel='stylesheet' id='sitepoint-styles-css'  href='//www.sitepoint.com/wp-content/themes/sitepoint/assets/stylesheets/styles-ba8c5dc40b46d8e58c971f0c54ac568d.css?ver=3.9' type='text/css' media='all' />
+
+  		<div class="container">
+  <div class="container">
+    <div class="starter-template">
+        <h1>Checklist/templates</h1> 
+    </div>
+  </div><!-- /.container -->
+
+		 <ul class="article-list">
+<% n =0 %>
+		<% @checklists.each do |checklist| %>
+			<% if checklist.progess == 0 %>  <!-- if checklist created -->
+				<% n = n+1 %>
+
+		    <li class="article-list_item  tile post-tile">
+		  		<article class="article article--micro  category-php ">
+		   			
+		   		<header class="article_category"><h6 class="article_category_title"><a><%=link_to checklist.title, checklist_path(checklist) %><right><span class="badge"><%= link_to image_tag("delete.png", size: "10x10"), checklist_path(checklist),
+				              method: :delete,
+				             data: { confirm: 'Are you sure?' } %></span></right></a></h3></header>
+
+		   			
+
+
+		    			<section class="article_header">
+	
+				
+					<div class="panel-body"><p>
+				<% if checklist.description.blank? %>
+						no description <br>
+					<% else %>
+						<%= checklist.description %><br>
+					<% end %></p></div>
+
+					<%= link_to "Démarrer", checklist_path(checklist)  %>
+
+
+		      			 <div class="contributor article_contributor">
+		        			<p class="contributor_name article_author-name"><% if checklist.createur != nil %>
+						<h6 id="createur" font-size:"1" ><i>Créée par <%= checklist.createur%></i></h6>
+					<% end %><br></a></p>
+		     			 </div>
+		      			 <div class="article_meta-data"><p class="article_pub-date"><time></time></p></div>
+		    			</section>
+		  		</article>
+			</li>
+			<% end %>
+			<% end %>
+		
+		</ul>
+		</div>
 
 
 
 
+
+<% end %>
 

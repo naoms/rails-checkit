@@ -48,6 +48,8 @@
 <% if @checklist.progess == 0 %>
 	<%= render 'tasks/form' %>
 	<%= link_to "Démarrer", checklist_start_path(@checklist) %><br>
+
+
 <% elsif @checklist.progess == 1 %>
 	<%= link_to "Add taches", checklist_new_tasks_path(@checklist) %>
 <% elsif @checklist.progess == 2 %>

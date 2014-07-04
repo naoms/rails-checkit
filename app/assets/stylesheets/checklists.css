@@ -1,23 +1,41 @@
 div.row#created{
-	background-color: rgba(51,204,255, 0.3);
+	/*background-color: rgba(51,204,255, 0.3);*/
+	/*background-color: #e2dedb;*/
 	padding-left: 100px;
-	border-radius: 0px;
+	border-radius: 3px;
+	border-bottom-style: solid;
 }
 
 div.col-md-6#enCours{
-	background-color: grey ;
+	background-color: #e2dedb ;
 	padding-left: 100px;
 	padding-right: 40px;
+	border-right-style: solid;
 }
 
 div.col-md-6#terminée{
-	background-color: beige;
+	background-color: #e2dedb;
 	padding-left: 100px;
 	padding-right: 50px;
 }
 
 div.col-md-3#created{
-	background-color: beige;
+	/*background-color: #e2dedb;
+	
+	border:0px;
+	padding-top: 5px;
+	padding-left: 30px; 
+	padding-bottom: 0px;
+	border-radius: 25px;
+	border-style: groove;*/
+	margin: 5px;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-color: black;
+}
+
+/*div#created{
+	background-color: #e2dedb;
 	margin: 5px;
 	border:0px;
 	padding-top: 5px;
@@ -26,52 +44,38 @@ div.col-md-3#created{
 	border-radius: 25px;
 	border-style: groove;
 	border-color: black;
-}
-div#created{
-	background-color: beige;
-	margin: 5px;
-	border:0px;
-	padding-top: 5px;
-	padding-left: 30px; 
-	padding-bottom: 0px;
-	border-radius: 25px;
-	border-style: groove;
-	border-color: black;
-}
+}*/
 
 
 div.col-md-3#started{
-	background-color: beige;
+/*	background-color: #e2dedb;
 	margin: 5px;
 	border:0px;
 	padding-top: 5px;
-	border-radius: 25px;
-	border-style: groove;
-	border-color: black;
-}
-
-div#started{
-	background-color: beige;
+	border-radius: 25px;*/
 	margin: 5px;
-	border:0px;
-	padding-top: 5px;
-	border-radius: 25px;
-	border-style: groove;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-right-style: groove;
+	border-right-width: 1px;
 	border-color: black;
 }
-
 
 div.col-md-3#finished{
-	background-color: rgba(51,204,255, 0.3);
+	/*background-color: rgba(51,204,255, 0.3);
 	margin: 5px;
 	border:0px;
 	padding-top: 5px;
-	border-radius: 25px;
-	border-style: groove;
+	border-radius: 25px;*/
+	margin: 5px;
+	border-bottom-style: groove;
+	border-bottom-width: 1px;
+	border-right-style: groove;
+	border-right-width: 1px;
 	border-color: black;
 }
 
-div#finished{
+/*div#finished{
 	background-color: rgba(51,204,255, 0.3);
 	margin: 5px;
 	border:0px;
@@ -79,7 +83,7 @@ div#finished{
 	border-radius: 25px;
 	border-style: groove;
 	border-color: black;
-}
+}*/
 
 div#timeFinished{
 	text-align: left;	
@@ -91,13 +95,135 @@ h6#createur{
 	padding-bottom: 0	px;
 }
 
-div.container#createNewCl{
-	background-color: beige;
-	padding: 20px;
+div.container#createNewCl {
+  margin-top: 5%;
+  text-align: center
 }
 
-div.personne{
-	right: 5px;
-	top: 20px;
 
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:300|Oswald:400,700);
+$background: hsl(225, 65, 65);
+
+
+html, body {
+  background: $background;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.55;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.wrap {
+  width: 75%;
+  max-width: 800px;
+  margin: 5% auto 0;
+  background: rgba(255,255,255,.3);
+  padding: 25px;
+  h2 {font-weight: 700; }
+.avatar {
+  padding: 0;
+  background: rgba(100,100,100, .5);
+  text-align: center;
+  img {
+    max-width: 100%;
+    padding: 0 0 5%;
+  }
+}
+}
+
+.icons {
+  background: rgba(0,0,125, .3);
+  text-align: center;
+  padding: 5px 0px;
+  
+  span {
+    color: rgba(235,245,245, .8);
+    font-size: 1.75rem;
+    padding: 10px;
+    transition: text-shadow 0.5s ease;
+    &:hover, &:focus {
+      //background: rgba(235,245,245, .3);
+      color: rgba(255,255,255,.75);
+      text-shadow: 0px 1px 1px rgba(yellow, .45);
+    }
+}
+}
+
+h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  
+}
+
+.v2 {
+  .icons {
+    span {
+      font-size: 1.25rem;
+    }
+}
+.content {
+  background: rgba(black, 0.2);
+  padding: 25px;
+  h2 {
+    margin-top: 0;
+  }
+}
+}
+
+
+
+
+
+
+
+
+//
+// NEW FORM STYLE
+// 
+//
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #e2dedb;
+  color: #b3aca7;
+}
+
+header {
+  margin-top: 50px;
+  font-size: 2.3em;
+  text-align: center;
+  letter-spacing: 7px;
+}
+
+input {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  width: 470px;
+  height: 50px;
+  padding: 0px 15px 0px 15px;
+  
+  background: transparent;
+  outline: none;
+  color: #726659;
+  
+  border: solid 1px #b3aca7;
+  border-bottom: none;
+  
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+input:hover {
+  background: #b3aca7;
+  color: #e2dedb;
 }

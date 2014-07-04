@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
   get 'taches/new'
 
+  get 'checklists/en_cours'
+  
+  get 'checklists/terminees'
+
+
   #match 'checklists/start/:id' => 'checklists#start', via: [:get]
   #get 'checklists/start/:id', to: 'checklists#start'
 
@@ -18,6 +23,7 @@ Rails.application.routes.draw do
     resources :checklists  do 
         get 'start'
         post 'finish' 
+        get 'test'
         resources :tasks
         get 'new_tasks'     
     end

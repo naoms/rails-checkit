@@ -1,8 +1,8 @@
 <%= form_for [@checklist, @checklist.tasks.build] do |a| %>
 
-<div class="form-group">
+<div id="name" type="text">
   <% a.label :description1 %>
-  <%= a.text_field :description, :autofocus=>true, :autocomplete=>"off", class: "form-control"%>
+  <%= a.text_field :description, :autofocus=>true, :autocomplete=>"off", :placeholder=>"Enter task" %>
 </div>
 
   <p>
