@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  root 'checklists#index'
+  root 'checklists#en_cours'
 
   get 'checklists/mytestchecklist'
 
@@ -24,7 +24,9 @@ Rails.application.routes.draw do
         get 'start'
         post 'finish' 
         get 'test'
-        resources :tasks
+        resources :tasks do
+          post 'update_status'
+        end
         get 'new_tasks'     
     end
 

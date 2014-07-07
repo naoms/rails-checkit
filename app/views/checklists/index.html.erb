@@ -1,15 +1,13 @@
 
-<ul class="nav nav-tabs" role="tablist">
-  <li><a href="/checklists/en_cours">En cours</a></li>
-  <li><a href="/checklists/terminees">Terminée</a></li>
-</ul>
-
-
+All the checklists
+ <br><br><br>
+ 
+<div class="container">
 
 <% n =0 %>
 <div class="row" id="created">
 	<div class="container">
-	<h1>Checklists/Templates</h1><br><br>
+
 		<div class="row">
 		<% @checklists.each do |checklist| %>
 
@@ -111,3 +109,4 @@
 
 <% end %>
 
+</div>

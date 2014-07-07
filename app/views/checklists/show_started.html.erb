@@ -1,3 +1,191 @@
+TESTING THIS PAGE
+<br><br><br><br>
+
+<% if false %>
+
+<div class="container">
+	<div class="checklist-details">
+		<div class="row">
+			<div class="col-md-2" id="description-info">Description
+				<div class="row">
+					<div class="description">
+						<!-- add container in each col ?? -->					
+					</div>
+				</div>
+				<div class="row">
+					<div class="author">
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="icons">
+						
+					</div>
+				</div>						
+			</div>
+			<div class="col-md-10" id="display">Display
+				<div class="row">
+					<div class="title">
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="tasks">
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="add-save">
+						
+					</div>
+				</div>	
+			</div>
+		</div>		
+	</div>
+</div>
+
+<% end %> <!-- end of if true/false -->
+
+
+
+
+
+<% if false %>
+
+<div class="container">
+	<div class="checklist-details">
+		<div class="row">
+			<div class="description-info col-md-3">
+				<div class=" row">
+					<div class="actual-description">
+						Description : <%= @checklist.description %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="author-name">
+						Démarrée par : <%= @checklist.garant %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="icons-display">
+						<div class="icons col-xs-12">
+					      <a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+					      <a href="#"><span class="glyphicon glyphicon-user"></span></a>
+					      <a href="#"><span class="glyphicon glyphicon-refresh"></span></a>
+					      <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+					      <a href="#"><span class="glyphicon glyphicon-print"></span></a>
+					    </div>
+					</div>
+				</div>						
+			</div>
+			<div class="display col-md-9">
+				<div class="row">
+					<div class="checklist-title">
+						<%= @checklist.title %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="tasks-display">
+									<% if @checklist.tasks.count == 0 && @checklist.description.blank? %>    
+	    
+									    	No tasks 
+
+									<% elsif  @checklist.tasks.count == 0 && !(@checklist.description.blank?) %> 
+											Description : <%= @checklist.description %><br>
+											<br><br>
+											    <p>
+												<% if @checklist.progess == 1 %>
+													<a href=" /checklists/:checklist_id/new_tasks(.:format)"><span class="glyphicon glyphicon-plus"></span></a>
+													<%= link_to "Add tasks", checklist_new_tasks_path(@checklist) %>
+												<% elsif @checklist.progess == 2 %>
+													<h2>Objectif atteint</h2>
+												<% end %>
+										      </p>
+
+											<%= button_to "J'ai suivis la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
+
+									<% elsif  @checklist.tasks.count > 0 && !(@checklist.description.blank?) %> 
+											Description : <%= @checklist.description %><br><br>
+											 <% @checklist.tasks.order("created_at asc").each do |task| %>
+												<% task.status %>
+										 		<%= check_box_tag task.status, unchecked_value = !(task.status), checked_value = task.status  %>
+										 		<% if unchecked_value %>
+										 			<% task.status= false %>
+										 		<% elsif checked_value %>
+										 			<% task.status = true %>
+										 		<% end %>
+										 		<%= label_tag task.description %><br>
+										 	<% end %>
+											<br><br>
+											   <p>
+												<% if @checklist.progess == 1 %>
+													<a ><span class="glyphicon glyphicon-plus"></span></a>
+													<%= link_to "Add tasks", checklist_new_tasks_path(@checklist) %>
+												<% elsif @checklist.progess == 2 %>
+													<h2>Objectif atteint</h2>
+												<% end %>
+										      </p>
+											<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
+
+
+
+									<% elsif @checklist.tasks.count > 0 && @checklist.description.blank? %>  
+
+											 	<% @checklist.tasks.order("created_at asc").each do |task| %>
+											 	   <div class="checklist_check">
+														<%= check_box_tag 'task_status', task.id, :class => 'task_status'  %>
+														<%= label_tag(task.status, task.description ) %>
+											   		</div>
+
+													<% task.status = false %>
+											 		<% if false %>
+												 		<% if checkbox checked ou task.status = false %>
+												 			<%= check_box_tag task.status, checked_value = (task.status=true) %>
+												 		<% elsif checkbox unchecked  %>
+												 			<%= check_box_tag task.status, checked_value = false %>
+												 		<% end %>
+											 		<% end %>
+													 <!-- check_box_tag "like[category_ids][]", category.id, @like.categories.include?(category)  -->
+													 <!-- http://stackoverflow.com/questions/12650017/rails-keeping-checkboxes-checked-on-reload-and-redirect-to -->
+														<br><br>
+											 	
+											 	<% end %>
+
+											 		   <p>
+													<% if @checklist.progess == 1 %>
+													<a href=" /checklists/:checklist_id/new_tasks(.:format)"><span class="glyphicon glyphicon-plus"></span></a>
+														<%= link_to "Add tasks", checklist_new_tasks_path(@checklist) %>
+													<% elsif @checklist.progess == 2 %>
+														<h2>Objectif atteint</h2>
+													<% end %>
+											      </p>	
+											 	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
+											 <br><br>
+									 	
+									 	
+									<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="add-save">
+						
+					</div>
+				</div>	
+			</div>
+		</div>		
+	</div>
+</div>
+	
+<% end %> <!-- end of if true/false -->
+
+
+
+
+
+
+
+
+<% if false %>
 <div class="row wrap clearfix v2">
   <!--Avatar -->
 <!--   <% if @checklist.progess == 0 %>
@@ -15,7 +203,8 @@
 			<% end %>
 		</div>
   <div class="col-sm-4 col-xs-12 avatar">
-    <img src="http://www.placehold.it/300x200&text=Avatar" alt="" />
+    <img src="http://www.placehold.it/300x200&text=Avatar" alt=""/>
+    Description : <%= @checklist.description %><br>
     <p>
 	<% if @checklist.garant != nil %>
 			<h6 id="garant" font-size:"1">Démarrée par : <%= @checklist.garant %></h6>
@@ -125,6 +314,7 @@
 </div>
 
 
+<% end %>
 
 
 
@@ -136,79 +326,87 @@
 
 
 
-
-
-
-
-<% if false %>	
+<% if true %>	<!-- Display Version 1 -->
 
 
 
 <div class="container">
-<h1>Checklist : <%= @checklist.title %></h1>
-<%= image_tag "inProgress.png", size: "40x40"  %><br><br>
+	<h1>Checklist : <%= @checklist.title %></h1>
+	<%= image_tag "inProgress.png", size: "40x40"  %><br><br>
 
-<div class="personne">
- 	<% if @checklist.createur != nil %>
-		<h6 id="createur" font-size:"1">Créée par : <%= @checklist.createur %></h6>
-	<% end %>
-	<% if @checklist.garant != nil %>
-		<h6 id="garant" font-size:"1">Démarrée par : <%= @checklist.garant %></h6>
-	<% end %>
-	<br><br>
-</div>
+	<div class="personne">
+		<% if @checklist.createur != nil %>
+			<h6 id="createur" font-size:"1">Créée par : <%= @checklist.createur %></h6>
+		<% end %>
+		<% if @checklist.garant != nil %>
+			<h6 id="garant" font-size:"1">Démarrée par : <%= @checklist.garant %></h6>
+		<% end %>
+	</div>
  
 <% if @checklist.tasks.count == 0 && @checklist.description.blank? %>    
     
     No tasks 
 
 <% elsif  @checklist.tasks.count == 0 && !(@checklist.description.blank?) %> 
-	Description : <%= @checklist.description %><br>
-	<br><br>
+	<p>
+		Description : <%= @checklist.description %>
+	</p>
+
 	<%= button_to "J'ai suivis la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
 
 <% elsif  @checklist.tasks.count > 0 && !(@checklist.description.blank?) %> 
-	Description : <%= @checklist.description %><br><br>
-	Tache :   <br><br> 
-	 <% @checklist.tasks.order("created_at asc").each do |task| %>
-		<%= task.status %>
- 		<%= check_box_tag task.status, unchecked_value = !(task.status), checked_value = task.status  %>
- 		<% if unchecked_value %>
- 			<% task.status= false %>
- 		<% elsif checked_value %>
- 			<% task.status = true %>
- 		<% end %>
- 		<%= label_tag task.description %><br>
- 	<% end %>
-	<br><br>
+	<p>
+		Description : <%= @checklist.description %>
+	</p>
+	<p>
+		Tache :
+	</p>
+
+	<ul class="list-group">
+		<% @checklist.tasks.order("created_at asc").each do |task| %>
+		<li class="list-group-item checklist-details-task">
+			<span class="task-status"><%= task.status %></span>
+	 		<%= check_box_tag task.status, unchecked_value = !(task.status), checked_value = task.status, checklist: @checklist.id, taskid: task.id  %>
+	 		<% if unchecked_value %>
+	 			<% task.status= false %>
+	 		<% elsif checked_value %>
+	 			<% task.status = true %>
+	 		<% end %>
+	 		<%= label_tag task.description %>
+		</li>
+	 	<% end %>
+	</ul>
 	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
 
 
 
   <% elsif @checklist.tasks.count > 0 && @checklist.description.blank? %>    
-  Tache :   <br><br> 
- 	<% @checklist.tasks.order("created_at asc").each do |task| %>
-		<%= check_box_tag task.status, checked_value = false %>
-		<%= label_tag(task.status, task.description ) %>
-		<% task.status = false %>
- 		<% if false %>
-	 		<% if checkbox checked ou task.status = false %>
-	 			<%= check_box_tag task.status, checked_value = (task.status=true) %>
-	 		<% elsif checkbox unchecked  %>
-	 			<%= check_box_tag task.status, checked_value = false %>
+  <p>
+  	Tache :
+  </p>
+  	<ul class="list-group">
+	 	<% @checklist.tasks.order("created_at asc").each do |task| %>
+	 	<li class="list-group-item">
+			<%= check_box_tag task.status, checked_value = false %>
+			<%= label_tag(task.status, task.description ) %>
+			<% task.status = false %>
+	 		<% if false %>
+		 		<% if checkbox checked ou task.status = false %>
+		 			<%= check_box_tag task.status, checked_value = (task.status=true) %>
+		 		<% elsif checkbox unchecked  %>
+		 			<%= check_box_tag task.status, checked_value = false %>
+		 		<% end %>
 	 		<% end %>
- 		<% end %>
-		 <!-- check_box_tag "like[category_ids][]", category.id, @like.categories.include?(category)  -->
-		 <!-- http://stackoverflow.com/questions/12650017/rails-keeping-checkboxes-checked-on-reload-and-redirect-to -->
-			<br><br>
- 	
- 	<% end %>
+			 <!-- check_box_tag "like[category_ids][]", category.id, @like.categories.include?(category)  -->
+			 <!-- http://stackoverflow.com/questions/12650017/rails-keeping-checkboxes-checked-on-reload-and-redirect-to -->
+	 	</li>
+	 	<% end %>
+	</ul>
 
- 	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
- <br><br>
- 	
+
+ 	<%= button_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %>
  	
  <% end %>
 
 </div>
- <% end %>
+<% end %>

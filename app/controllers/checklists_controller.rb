@@ -112,7 +112,7 @@ class ChecklistsController < ApplicationController
 		@checklist = Checklist.find(params[:id])
 		@checklist.destroy
 	
-		redirect_to checklists_path
+		redirect_to checklists_en_cours_path
 	end
 
 

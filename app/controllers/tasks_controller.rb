@@ -28,11 +28,26 @@ class TasksController < ApplicationController
 
   end
 
-    def update
+  def update
     task.update_attributes(safe_params)
     render nothing: true, status: 204
   end
 
+  def update_status
+    checklistid = params[:checklist_id]
+    taskid = params[:task_id]
+    status = params[:status]
+    print "checklistid: #{checklistid}\n"
+    print "taskid: #{taskid}\n"
+    print "status: #{status}\n"
+    Task.update_status(taskid, status)
+
+    respond_to do |format|
+      msg = { :status => Task.update_status(taskid, status) }
+      format.json  { render :json => msg } # don't do msg.to_json
+    end
+
+  end
 
  
   private

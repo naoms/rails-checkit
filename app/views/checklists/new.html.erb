@@ -3,7 +3,7 @@
 
 
 <div class="container" id="createNewCl">
-  <%= form_for @checklist do |f| %>
+  <%= form_for(@checklist, :html => {:class => "main-form"}) do |f| %>
     <% if @checklist.errors.any? %>
       <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
       <ul>
