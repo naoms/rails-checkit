@@ -65,7 +65,9 @@
 						<div class="bs-sidebar affix">
 							<ul class="nav bs-sidenav">
 							    	<% @checklists.each do |checklist| %>
-						                <li><a href="#"><%= checklist.title %></a></li>
+							    		<% if checklist.progess == 0 %>
+						                	<li><a href="#"><%= checklist.title %></a></li>
+						                <% end %>
 						            <% end %>
 							</ul>
 						</div>
@@ -75,7 +77,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 

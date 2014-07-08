@@ -88,7 +88,7 @@ class ChecklistsController < ApplicationController
 		if @checklist.save
 			@checklist.progess = '0'
 			#verifier quae ca amrhce ! 
-			@checklist.template_version = 2
+			@checklist.template_version = 1
 			@checklist.save
 			@progress = @checklist.progess.to_i		
 			redirect_to checklist_path(@checklist)
