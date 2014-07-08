@@ -1,84 +1,66 @@
 
 <% if true %>
 
-<div class="container">
+<div class="container ">
 	<div class="checklist-details">
 		<div class="row">
-			<div class="col-md-3 description-info ">
+			<div class= "col-md-8 col-md-offset-2 ">
 				<div class="row">
-					<div class="status-image">
-						<% if @checklist.progess == 0 %>
-							<%= image_tag "start.png", size: "50x50"  %>
-						<% elsif @checklist.progess == 1 %>
-							<%= image_tag "inProgress.png", size: "50x50"  %>
-						<% elsif @checklist.progess == 2 %>
-							<%= image_tag "ObjectifAtteinds.jpeg", size: "50x50"  %>
-						<% end %>
-					</div>
-				</div>
-				<div class="row">
-					<div class="actual-description">
-						<% if !(@checklist.description.blank?) %>
-							Description : <%= @checklist.description %>
-						<% elsif @checklist.description.blank? %>
-							No description of checklist
-						<% end %>
-					</div>
-				</div>
-				<div class="row">
-					<div class="author-name">
-						<p>
-							<% if !(@checklist.createur.blank?) %>
-								<font size ="2px">Créee par : </font><%= @checklist.createur %>
-							<% else %>
-								Le créateur n'a pas donné son nom
-							<% end %>
+					<div class="col-md-12">
+						<ol class="breadcrumb">
+  							<li><a href="#">Home</a></li>
+  							<li><a href="/checklists">Templates</a></li>
+  							<li class="active"><%= @checklist.title.titleize %></li>
+						</ol>
+						<h1 class="page-header">
+							<%= @checklist.title.titleize %>
+						</h1>	
+						<p class="lead">
+							<%= @checklist.description %>
 						</p>
 					</div>
 				</div>
 				<div class="row">
-					<div class="icons-display">
-						<div class="icons col-xs-12">
-						<!-- <a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
-					      <a href="#"><span class="glyphicon glyphicon-user"></span></a>
-					      <a href="#"><span class="glyphicon glyphicon-refresh"></span></a> -->
-					      <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
-					      <!-- <a href="#"><span class="glyphicon glyphicon-print"></span></a> -->
-					    </div>
-					</div>
-				</div>						
-			</div>
-			<div class= "col-md-9 display">
-				<div class="row">
-					<div class="checklist-title">
-						<%= @checklist.title %>
-					</div>
-				</div>
-				<div class="row">
-					<div class="tasks-display">
+					<div class="col-md-12">
+						<div class="bottom30">
+							<%= render 'tasks/form' %>
+						</div>
+
 						<% if @checklist.tasks.count == 0 %>    
 							<p>
 						    	No tasks 
 						    </p>
 						<% elsif  @checklist.tasks.count > 0 %> 
-							<ul class="list-group">
+
+
 								<% n =0 %>
-								<% @checklist.tasks.order("created_at asc").each do |task| %>
-									<li class="checklist-details-task">
-										<span class="task-status"><% task.status %></span>
-										<%= n = n +1 %>.
-										<%= task.description %>
-									</li>
+								<% @checklist.tasks.order("created_at desc").each do |task| %>
+									<div class="input-group input-group-lg">
+										  <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+			  								<input type="text" class="form-control task" placeholder="<%= task.description %>" disabled="disabled">
+									</div>
+
+								
 							 	<% end %>
-							</ul>
-						<% end %> <!-- end of if condition -->
-					</div><!-- task display-->
+						<% end %> 	
+						<div class="btn-toolbar pull-right top30" role="toolbar">
+					      <div class="btn-group">
+					        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span></button>
+					        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+					      </div>
+					    </div>					
+						
+					</div>				
 				</div> <!-- row -->
+
+
+				<br/><br/><br/><br/>
+
+				<% if false %>
 				<div class="row">
 					<div class="display-add">
 						<p>
 							<% if @checklist.progess == 0 %>
-								<%= render 'tasks/form' %>
 								<%= form_for @checklist do |f| %>
 							        <div id="name" type="text">
 								        <% f.label :garant %></h2>
@@ -102,6 +84,8 @@
 						</p>
 					</div>
 				</div>			
+				<% end %>
+
 			</div>
 		</div>		
 	</div>

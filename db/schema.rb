@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20140702094908) do
     t.datetime "updated_at"
     t.boolean  "status",           default: false
     t.integer  "progess"
-    t.string   "garant"
+    t.text     "garant"
     t.datetime "timeStarted"
     t.datetime "timeFinished"
     t.string   "createur"
-    t.integer  "template_version", default: 0
+    t.integer  "template_version"
   end
 
   create_table "taches", force: true do |t|

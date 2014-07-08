@@ -1,6 +1,6 @@
 <%= form_for [@checklist, @checklist.tasks.build] do |a| %>
 
-<div id="name" type="text">
+<!-- <div id="name" type="text">
   <% a.label :description1 %>
   <%= a.text_field :description, :autofocus=>true, :autocomplete=>"off", :placeholder=>"Enter task" %>
 </div>
@@ -8,6 +8,19 @@
   <p>
     <%= a.submit %>
   </p>
+ -->
+    <div class="input-group input-group-lg">
+
+      <%= a.text_field :description, :autofocus=>true, :autocomplete=>"off", :placeholder=>"Enter task", :type=>"text", :class=>"form-control" %>
+
+      <span class="input-group-btn">
+        <%= button_tag(type: 'submit', class: "btn btn-default btn-success") do %>
+        Ajouter
+        <% end %>
+      </span>
+
+    </div><!-- /input-group --> 
+
 <% end %>
 
 
