@@ -10,51 +10,71 @@
 </p>
 
 <div class="row index-terminees">
-
-	<table class="table table-striped table-bordered table-condensed">
-	    <thead>
-	        <tr>
-	            <th>Title</th>
-	            <th>Description</th>
-	            <th>Start - Finish</th>
-	            <th>Garant</th>
-	            <th>Createur</th>
-	            <th></th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	    	<% @checklists.each do |checklist| %>
-	    		<% if checklist.progess == 2 %>   <!-- if checklist started -->
-			        <tr>
-			            <td><%=link_to checklist.title, checklist_path(checklist) %></td>
-			            <td>
-			            	<% if checklist.description.blank? %>
-								no description <br>
-							<% else %>
-								<%= checklist.description %><br>
-							<% end %>
-			            </td>
-			            <td>
-			            	<% if checklist.timeStarted != nil %>
-							<h6 font-size:"1"><i><%= checklist.timeStarted.to_formatted_s(:short) %> - <h6 font-size:"1"><i><%= checklist.timeFinished.to_formatted_s(:short) %></i></h6></i></h6>
-							<% end %>
-			            </td>
-			            <td><% if checklist.garant != nil %>
-						<h6 id="garant" font-size:"1"><%= checklist.garant %></h6>
-						<% end %></td>
-			            <td><% if checklist.createur != nil %>
-						<h6 id="createur" font-size:"1"><%= checklist.createur %></h6>
-						<% end %></td>
-			            <td><%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
-				              method: :delete,
-				             data: { confirm: 'Are you sure?' } %></td>
-			        </tr>
-		        <% end %>
-	    	<% end %>
-	    </tbody>
-	</table>
-
+	<div class="col-md-12">
+		<table class="table table-striped table-bordered table-condensed">
+		    <thead>
+		        <tr>
+		            <th>Title</th>
+		            <th>Description</th>
+		            <th>Start - Finish</th>
+		            <th>Garant</th>
+		            <th>Createur</th>
+		            <th></th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<% @checklists.each do |checklist| %>
+		    		<% if checklist.progess == 2 %>   <!-- if checklist started -->
+				        <tr>
+				            <td><%=link_to checklist.title, checklist_path(checklist) %></td>
+				            <td>
+				            	<% if checklist.description.blank? %>
+									no description <br>
+								<% else %>
+									<%= checklist.description %><br>
+								<% end %>
+				            </td>
+				            <td>
+				            	<% if checklist.timeStarted != nil %>
+								<h6 font-size:"1"><i><%= checklist.timeStarted.to_formatted_s(:short) %> - <h6 font-size:"1"><i><%= checklist.timeFinished.to_formatted_s(:short) %></i></h6></i></h6>
+								<% end %>
+				            </td>
+				            <td><% if checklist.garant != nil %>
+							<h6 id="garant" font-size:"1"><%= checklist.garant %></h6>
+							<% end %></td>
+				            <td><% if checklist.createur != nil %>
+							<h6 id="createur" font-size:"1"><%= checklist.createur %></h6>
+							<% end %></td>
+				            <td><%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
+					              method: :delete,
+					             data: { confirm: 'Are you sure?' } %></td>
+				        </tr>
+			        <% end %>
+		    	<% end %>
+		    </tbody>
+		</table>
+	</div>
 </div><!-- end of row-->
+</div>
+<div class="container">
+	<div class="side-bar-template">
+		<div class="bs-sidebar affix">
+		    <ul class="nav bs-sidenav">
+		        <li class="active"><a href="/checklists">Templates</a>
+	        		<div class="side-bar-all-templates">
+						<div class="bs-sidebar affix">
+							<ul class="nav bs-sidenav">
+							    	<% @checklists.each do |checklist| %>
+						                <li><a href="#"><%= checklist.title %></a></li>
+						            <% end %>
+							</ul>
+						</div>
+					</div>
+		        </li>
+		    </ul>
+		</div>
+	</div>
+</div>
 
 
 

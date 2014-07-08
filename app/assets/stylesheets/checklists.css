@@ -310,3 +310,15 @@ ul{
 .display-just-save{
   position: relative;
     }
+
+.side-bar-template{
+  position: fixed;
+  right: 130px;
+  top: 200px;
+}
+
+.side-bar-all-templates{
+    position: fixed;
+  right: 70px;
+  top: 30px;
+}
