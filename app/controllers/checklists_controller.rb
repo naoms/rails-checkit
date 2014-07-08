@@ -38,6 +38,8 @@ class ChecklistsController < ApplicationController
 			render 'show_unstarted.html.erb'
 		when 1
 			render 'show_started.html.erb'
+		when 2
+			render 'show_started.html.erb'
 		else
 			render 'show.html.erb'
 		end
@@ -112,7 +114,7 @@ class ChecklistsController < ApplicationController
 		@checklist = Checklist.find(params[:id])
 		@checklist.destroy
 	
-		redirect_to checklists_en_cours_path
+		redirect_to checklists_path
 	end
 
 

@@ -1,112 +1,75 @@
 
-All the checklists
- <br><br><br>
- 
+
 <div class="container">
-
-<% n =0 %>
-<div class="row" id="created">
-	<div class="container">
-
-		<div class="row">
-		<% @checklists.each do |checklist| %>
-
-			<% if n%3 == 0  %>
-					</div><div class="row">
-				<% end %>
-
-			<% if checklist.progess == 0 %>  <!-- if checklist created -->
-				<div class="col-md-3" id="created" >
-					<% n = n+1 %>
-					<b>Title : </b><%=link_to checklist.title, checklist_path(checklist) %><br>
-					<!-- <%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %><br> -->
-					<% if checklist.description.blank? %>
-						no description <br>
-					<% else %>
-						<b>Description : </b><%= checklist.description %><br>
-					<% end %>
-					<!-- <b>Status : </b><%= checklist.progess.to_i %><br> -->
-					<%= link_to "Démarrer", checklist_path(checklist)  %><br>
-					<br>
-					<% if checklist.createur != nil %>
-						<h6 id="createur" font-size:"1" ><i>Créée par <%= checklist.createur%></i></h6>
-					<% end %><br>
-					<%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
-				              method: :delete,
-				             data: { confirm: 'Are you sure?' } %> 	
+	<% n =0 %>
+	<div class="row new-checklist-row">
+		<div class="col-md-2 col-md-offset-1 created-row"><!-- Column create -->
+			<div class="row">
+				<div class="empty-template">
+					<p>
+						<%= link_to image_tag("plus.png", size: "30x30"), new_checklist_path %>
+					</p>	
 				</div>
-			<% end %>
 
-		<% end %>
-	</div>
-	<br><br>
-
-	</div>
-
-</div>
-
- <% if false %>
-
-
-<!-- PRIT DU SITE SITE POINT !!!! -->
-
-<link rel='stylesheet' id='sitepoint-styles-css'  href='//www.sitepoint.com/wp-content/themes/sitepoint/assets/stylesheets/styles-ba8c5dc40b46d8e58c971f0c54ac568d.css?ver=3.9' type='text/css' media='all' />
-
-  		<div class="container">
-  <div class="container">
-    <div class="starter-template">
-        <h1>Checklist/templates</h1> 
-    </div>
-  </div><!-- /.container -->
-
-		 <ul class="article-list">
-<% n =0 %>
-		<% @checklists.each do |checklist| %>
-			<% if checklist.progess == 0 %>  <!-- if checklist created -->
-				<% n = n+1 %>
-
-		    <li class="article-list_item  tile post-tile">
-		  		<article class="article article--micro  category-php ">
-		   			
-		   		<header class="article_category"><h6 class="article_category_title"><a><%=link_to checklist.title, checklist_path(checklist) %><right><span class="badge"><%= link_to image_tag("delete.png", size: "10x10"), checklist_path(checklist),
-				              method: :delete,
-				             data: { confirm: 'Are you sure?' } %></span></right></a></h3></header>
-
-		   			
-
-
-		    			<section class="article_header">
-	
+			</div>
+			<div class="row">
+				<div class="empty-template-text">
+					<p>
+						<%= link_to 'Create Own Template', new_checklist_path %>
+					</p>	
+				</div>
 				
-					<div class="panel-body"><p>
-				<% if checklist.description.blank? %>
-						no description <br>
-					<% else %>
-						<%= checklist.description %><br>
-					<% end %></p></div>
-
-					<%= link_to "Démarrer", checklist_path(checklist)  %>
-
-
-		      			 <div class="contributor article_contributor">
-		        			<p class="contributor_name article_author-name"><% if checklist.createur != nil %>
-						<h6 id="createur" font-size:"1" ><i>Créée par <%= checklist.createur%></i></h6>
-					<% end %><br></a></p>
-		     			 </div>
-		      			 <div class="article_meta-data"><p class="article_pub-date"><time></time></p></div>
-		    			</section>
-		  		</article>
-			</li>
-			<% end %>
-			<% end %>
-		
-		</ul>
+			</div>			
 		</div>
-
-
-
-
-
-<% end %>
-
+		<div class="col-md-6 template-row"><!-- Column templates -->
+			<p>
+			All templates
+			</p>
+			<div class="row template-checklist-row">
+				<% @checklists.each do |checklist| %>
+					<% if n%3 == 0  %>
+							</div><div class="row template-checklist-row">
+					<% end %>
+					<% if checklist.progess == 0 %>  <!-- if checklist created -->
+						<div class="col-md-3 template-box" >
+							<% n = n+1 %>
+							<div class="row display-title">
+								<p>
+									<%=link_to checklist.title, checklist_path(checklist) %>
+									<!-- <%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %> -->
+								</p>
+							</div>
+							<div class="row display-description">
+								<p>
+									<%=checklist.description %>
+								</p>
+							</div>	
+							<div class="row">
+								<p>
+									<% if checklist.createur != nil %>
+										<% if checklist.createur.length > 15 %>
+											<div class="row display-createur-long">
+												Créee par <%= checklist.createur%>
+											</div>
+										<% elsif checklist.createur.length < 15 %>
+											<div class="row display-createur-short">
+												Créee par <%= checklist.createur%>
+											</div>
+										<% end %>
+									<% end %>
+								</p>
+							</div>		
+							<div class="row display-poubelle">
+								<p>
+									<%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
+						              method: :delete,
+						             data: { confirm: 'Are you sure?' } %> 
+								</p>
+							</div>																			
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>

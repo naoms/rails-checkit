@@ -1,15 +1,19 @@
 
-    <header>CREER UNE CHECKLIST</header>
+<header>CREER UNE CHECKLIST</header>
 
 
 <div class="container" id="createNewCl">
   <%= form_for(@checklist, :html => {:class => "main-form"}) do |f| %>
     <% if @checklist.errors.any? %>
-      <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
+      <p>
+        <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
+      </p>
       <ul>
-      <% @checklist.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
+        <% @checklist.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
       </ul>
     <% end %>
     <div id="name" type="text">
@@ -24,7 +28,7 @@
       <% f.label :createur %>
       <%= f.text_field :createur, :placeholder => "Createur" %>
     </div> 
-<!--     <% n = 0 %>
+    <!--     <% n = 0 %>
     <%= f.fields_for :tasks, [Task.create]*1 do |task| %>
       <div id="email" type="text" placeholder="E-MAIL">
         <div id="name" type="text">
