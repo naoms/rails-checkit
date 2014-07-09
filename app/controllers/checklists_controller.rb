@@ -2,7 +2,7 @@
 class ChecklistsController < ApplicationController
 
 	def index
-		@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
+		@checklists = Checklist.all.order('checklists."updated_at" desc','checklists.created_at desc')
 
 	end
 
@@ -22,12 +22,16 @@ class ChecklistsController < ApplicationController
     end 
 
 	def en_cours
-	@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
+		@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
 	end
 
 
 	def terminees
-	@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
+		@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
+	end
+
+	def demaree
+		@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
 	end
 
 	def show

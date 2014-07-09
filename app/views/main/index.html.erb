@@ -1,4 +1,95 @@
+<div class="container">
 
-<div ng-controller = "IndexCtrl" >
-  <h1>{{ title }}</h1>
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-md-8 col-md-offset-2">
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="jumbotron">
+        <h1>Home Page CheckIT</h1>
+        <p>Quoi faireee.</p>
+      </div>
+      <div class="row">
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>Templates</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="/checklists/" role="button">Templates &raquo;</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>Create your own template</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="/checklists/new" role="button">Create checklist &raquo;</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>Checklist in progress</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="/checklists/en_cours" role="button">Checklist in Progress	&raquo;</a></p>
+        </div><!--/span-->
+      </div>
+      <div class="row">
+     	  <div class="col-6 col-sm-6 col-lg-4">
+          <h2>Checklist finished</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="/checklists/terminees" role="button">Checklist Done &raquo;</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>checklist archived</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/span-->
+
+   <!--  <div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="list-group">
+        <a href="#" class="list-group-item active">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+        <a href="#" class="list-group-item">Link</a>
+      </div>
+    </div>	ce qui suit et un commentaire<span> -->
+  </div><!--/row-->
+
+
+</div><!--/.container-->
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="offcanvas.js"></script>
+
+
+
+
+
+
+
+
+
+<% if false %>
+<div class="container top30">
+	<h1><center>Home page</center></h1>
 </div>
+<div class="container">
+	<div class= "col-md-8 col-md-offset-2 top30">
+		<ul class="nav nav-tabs" role="tablist">
+		  <li><a href="/checklists/en_cours">En cours</a></li>
+		  <li><a href="/checklists/terminees">Terminée</a></li>
+		  <li><a href="/checklists/">Templates</a></li>
+		  <li><a href="/checklists/new">Create template</a></li>
+		</ul>
+	</div>
+</div>
+	
+<% end %>

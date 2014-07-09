@@ -1,61 +1,95 @@
-
-<header>CREER UNE CHECKLIST</header>
-
-
-<div class="container" id="createNewCl">
-  <%= form_for(@checklist, :html => {:class => "main-form"}) do |f| %>
-    <% if @checklist.errors.any? %>
-      <p>
-        <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
-      </p>
-      <ul>
-        <% @checklist.errors.full_messages.each do |msg| %>
-          <li>
-            <%= msg %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-    <div id="name" type="text">
-      <% f.label :title %></h2><br>
-      <%= f.text_field :title, :autofocus=>true, :autocomplete=>"off",:placeholder => "TITLE"%>
-    </div>
-    <div id="name" type="text">
-      <% f.label :description %>
-      <%= f.text_field :description, :placeholder => " Add a description to your Checklist" %>
-    </div>
-    <div id="message" type="text">
-      <% f.label :createur %>
-      <%= f.text_field :createur, :placeholder => "Createur" %>
-    </div> 
-    <!--     <% n = 0 %>
-    <%= f.fields_for :tasks, [Task.create]*1 do |task| %>
-      <div id="email" type="text" placeholder="E-MAIL">
-        <div id="name" type="text">
-          <% n = n+1 %>
-          <%= task.text_field :description, :placeholder=>"Enter first task" %>
-       </div>
+<div class="container">
+  <div class= "col-md-8 col-md-offset-2 ">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="/main/index">Home</a></li>
+            <li><a href="/checklists/">Templates</a></li>
+            <li class="active">Creating checklist</li>
+        </ol>
       </div>
-    <% end %> -->
-    <div id="submit" type="submit" >
-      <%= f.submit ' Add tasks to checklist'   %>
     </div>
-  <% end %>
+  </div>
 </div>
 
 
 
+<div class="container" id="createNewCl">
+  <div class= "col-md-8 col-md-offset-2 ">
+    <%= form_for(@checklist, :html => {:class => "main-form"}) do |f| %>
+      <% if @checklist.errors.any? %>
+        <p>
+          <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
+        </p>
+        <ul>
+          <% @checklist.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="input-group input-group-lg">
+              <% f.label :title %>
+              <%= f.text_field :title, :placeholder => " Title ", :type => "text", :class => "form-control", :autofocus => true, :autocomplete=>"off"%>
+            </div>
+          </div>
+        </div>
+      </div>    
+
+      <div class="row bottom30">
+        <div class="col-md-12">
+          <div class="lead">
+            <% f.label :description %>
+            <%= f.text_field :description, :placeholder => " Add a description to your Checklist ",:type => "text", :class => "form-control", :autocomplete => "off" %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row top30 bottom30">
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <% f.label :createur %>
+            <%= f.text_field :createur, :placeholder => " Createur", :type => "text", :class => "form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row top30">
+        <div class="col-md-12">
+          <span class="input-group-btn" >
+            <%= button_tag(type: 'submit', class: "btn btn-primary" ) do %>
+            Add tasks to checklist
+            <% end %>
+          </span>
+        </div>
+      </div>
+
+    <% end %>
+  </div>  
+</div>
 
 
 
+<% if false %>  <!--- task and checklist in the same form -->
 
 
+<!--     <% n = 0 %>
+<%= f.fields_for :tasks, [Task.create]*1 do |task| %>
+<div id="email" type="text" placeholder="E-MAIL">
+<div id="name" type="text">
+<% n = n+1 %>
+<%= task.text_field :description, :placeholder=>"Enter first task" %>
+</div>
+</div>
+<% end %> -->
 
 
-
-
-
-
+<% end %>
 
 
 
@@ -66,14 +100,14 @@
 
 <h1>Créer une nouvelle check-list</h1>
 
-		  <%= form_for @checklist do |f| %>
+  <%= form_for(@checklist, :html => {:class => "main-form"}) do |f| %>
 
 		    <% if @checklist.errors.any? %>
           <h2><%= pluralize(@checklist.errors.count, "error") %> prohibite this checklist from being saved: </h2> 
           <ul>
-          <% @checklist.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-          <% end %>
+            <% @checklist.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
           </ul>
         <% end %>
 

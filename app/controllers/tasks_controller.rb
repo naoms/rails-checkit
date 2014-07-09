@@ -49,6 +49,14 @@ class TasksController < ApplicationController
 
   end
 
+  def destroy   
+    @checklist = Checklist.find(params[:checklist_id])
+    @task = @checklist.tasks.find(params[:id])
+    @task.destroy
+  
+    redirect_to checklist_path(@checklist)
+  end
+
  
   private
     def task_params
