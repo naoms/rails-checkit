@@ -60,11 +60,11 @@
 									<% if checklist.createur != nil %>
 										<% if checklist.createur.length > 15 %>
 											<div class="row display-createur-long">
-												Créee par <%= checklist.createur%>
+												Créee par <%= checklist.createur || 'Pas de createur'  %>
 											</div>
 										<% elsif checklist.createur.length < 15 %>
 											<div class="row display-createur-short">
-												Créee par <%= checklist.createur%>
+												Créee par <%= checklist.createur || 'Pas de createur'%>
 											</div>
 										<% end %>
 									<% end %>
