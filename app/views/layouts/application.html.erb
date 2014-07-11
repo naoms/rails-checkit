@@ -23,7 +23,48 @@
               <a href="/" class="navbar-brand">CheckIT</a>
             </div>
             <ul class="nav navbar-nav">
-              
+              <li class="dropdown">
+                  <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/en_cours">
+                    Checklists en Cours <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/en_cours">Checklist en Cours</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <% Checklist.all.each do |checklist|%>
+                      <% if checklist.progess == 1 %>
+                        <li role="presentation"><%= link_to checklist.title + ' - ' + (checklist.garant || 'pas de garant') , checklist_path(checklist) %></li>
+                      <% end %>
+                    <% end %>
+                  </ul>
+                  
+              </li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/terminees">
+                    Checklists Terminées <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/terminees">Checklist Terminées</a></li>
+                    <li role="presentation" class="divider"></li>
+                   <% Checklist.all.each do |checklist|%>
+                    <% if checklist.progess == 2 %>
+                      <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.garant , checklist_path(checklist) %></li>  
+                      <% end %>
+                    <% end %>
+                  </ul>
+              </li>  
+               <li class="dropdown">
+                  <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/terminees">
+                    Templates <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/">Templates</a></li>
+                    <li role="presentation" class="divider"></li>
+                   <% Checklist.all.each do |checklist|%>
+                    <% if checklist.progess == 0 %>
+                      <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.createur , checklist_path(checklist) %></li>  
+                      <% end %>
+                    <% end %>
+                  </ul>
               </li> 
               <li><a href="/checklists/new">Create new Checklist</a></li>                                     
               </ul>
