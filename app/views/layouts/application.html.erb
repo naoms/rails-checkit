@@ -47,7 +47,7 @@
                     <li role="presentation" class="divider"></li>
                    <% Checklist.all.each do |checklist|%>
                     <% if checklist.progess == 2 %>
-                      <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.garant , checklist_path(checklist) %></li>  
+                      <li role="presentation"><%= link_to checklist.title + ' - ' + (checklist.garant || 'pas de garant') , checklist_path(checklist) %></li>  
                       <% end %>
                     <% end %>
                   </ul>
