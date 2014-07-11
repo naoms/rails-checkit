@@ -9,6 +9,7 @@ class TasksController < ApplicationController
 
     @checklist = Checklist.find(params[:checklist_id])
     @task = @checklist.tasks.new(task_params)
+    @task.status=false
     if @checklist.save
     redirect_to checklist_path(@checklist)
     else
@@ -48,6 +49,8 @@ class TasksController < ApplicationController
     end
 
   end
+
+
 
   def destroy   
     @checklist = Checklist.find(params[:checklist_id])

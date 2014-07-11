@@ -1,10 +1,14 @@
 <div class="container">
-	<div class= "col-md-8 col-md-offset-2 ">
+	<div class= "col-md-8 col-md-offset-2 top30 ">
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
 						<li><a href="/main/index">Home</a></li>
-						<li class="active"><a href="/checklists/en_cours">En cours</a></li>
+						<% if @checklist.progess == 1 %>
+							<li class="active"><a href="/checklists/en_cours">En cours</a></li>
+						<% elsif @checklist.progess == 2 %>
+							<li class="active"><a href="/checklists/terminees">Terminées</a></li>
+						<% end %>
 						<li class="active"><%= @checklist.title.titleize %></li>
 				</ol>
 			</div>
@@ -15,21 +19,129 @@
 
 <% if true %>
 
-<div class="container">
-	<div class= "col-md-10 col-md-offset-3 top30">
+
+
+
+<div class="container ">
+	<div class="checklist-details">
 		<div class="row">
-			<div class="col-md-2 description-info ">
+			<div class= "col-md-8 col-md-offset-2 ">
 				<div class="row">
-					<div class="status-image">
-						<% if @checklist.progess == 0 %>
-							<%= image_tag "start.png", size: "50x50"  %>
-						<% elsif @checklist.progess == 1 %>
-							<%= image_tag "inProgress.png", size: "50x50"  %>
-						<% elsif @checklist.progess == 2 %>
-							<%= image_tag "ObjectifAtteinds.jpeg", size: "50x50"  %>
+					<div class="col-md-12">	
+						<h1 class="page-header">
+							<%= @checklist.title.titleize %>
+						</h1>	
+						<div class="btn-toolbar pull-right bottom30">
+							<p>
+							 	<% if !(@checklist.createur.blank?) %>
+									Crée par <%= @checklist.createur.capitalize%>
+								<% end %>
+							</p>
+							<p>
+								<% if !(@checklist.garant.blank?) %>
+									Démarée par <%= @checklist.garant.capitalize %>
+								<% end %>
+							</p>
+						</div>
+						<p class="lead">
+							<%= @checklist.description.capitalize %>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+						<% if @checklist.tasks.count == 0 %>    
+							<p>
+						    	No tasks 
+						    </p>
+						<% elsif  @checklist.tasks.count > 0 %> 
+								<% n =0 %>
+								<% @checklist.tasks.order("created_at desc").each do |task| %>
+										<div class="input-group input-group-lg">
+												<span class="input-group-addon"><%= link_to image_tag("delete.png", size: "15x15"), checklist_task_path(@checklist, task),
+								              method: :delete,
+								             data: { confirm: 'Are you sure?' } %></span>
+								             <% if @checklist.progess == 1 %>
+												<span class="input-group-addon checklist-details-task">
+									 				<%= check_box_tag task.status, unchecked_value = !(task.status), checked_value = task.status, checklist: @checklist.id, taskid: task.id %>
+									 			</span>
+									 			<% if task.status == false %>
+													<input type="text" class="form-control task" placeholder='<%= task.description %>' disabled="disabled">
+												<% elsif task.status == true %>
+													<input type="text" class="form-control task" placeholder='<%= task.description.capitalize %>' disabled="disabled">
+												<% end %>
+											<% elsif @checklist.progess == 2 %>
+								             	<span class="input-group-addon"><%= link_to image_tag("check.png", size: "15x15"), checklist_path(@checklist)%></span>
+								             	<input type="text" class="form-control task" placeholder="<%= task.description %>" disabled="disabled">
+								            <% end %>
+				  								
+										</div>
+							 	<% end %>
+
+						<% end %> 	
+
+				<div class="row">
+					<div class="display-add top30">
+						<p>
+							<% if @checklist.progess == 1 %>
+								<a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+								<%= link_to "Add task", checklist_new_tasks_path(@checklist) %>
+							<% elsif @checklist.progess == 2 %>
+								<h2>Objectif atteint</h2>
+							<% end %>
+						</p>
+					</div>
+				</div>
+
+						<div class="btn-toolbar pull-right top30" role="toolbar">
+					    	<div class="btn-group">
+					    		<%= link_to ' Supprimer', checklist_path(@checklist), 
+					    		method: :delete, data: { confirm: 'Are you sure?' },
+					    		:class =>"btn btn-danger glyphicon glyphicon-trash", 
+					    		:type => "button",
+					    		:style => "height:34px" %>
+					      </div>
+					    </div>	
+
+
+					    <div class="row">
+					<div class="display-save bottom30">
+						<% if @checklist.progess == 1 %>
+							<p>
+								<% if @checklist.tasks.count > 0 %>
+									<p>
+										<button type="button" class="btn btn-default btn-lg glyphicon glyphicon-ok">
+											<%= link_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %>
+										</button>
+									</p>
+								<% elsif @checklist.tasks.count == 0 && !(@checklist.description.blank?) %>
+									<p>
+										<%= link_to "J'ai suivis la description", :class => 'btn btn-default btn-lg', data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} do %>
+    											J'ai suivis la description <span class="glyphicon glyphicon-ok" ></span>
+										<% end %>
+									</p>
+								<% end %>
+							</p>
 						<% end %>
 					</div>
 				</div>
+
+						
+					</div>				
+				</div> <!-- row -->
+			</div>
+		</div>		
+	</div>
+</div>
+	
+<% end %> <!-- end of if true/false -->
+
+
+
+<% if false %> 
+<div class="container">
+	<div class= "col-md-10 col-md-offset-2">
+		<div class="row">
+	<!-- 		<div class="col-md-2 description-info ">
 				<div class="row">
 					<div class="actual-description">
 						<% if !(@checklist.description.blank?) %>
@@ -60,20 +172,23 @@
 				<div class="row">
 					<div class="icons-display">
 						<div class="icons col-xs-12">
-<!-- 					      <a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
-					      <a href="#"><span class="glyphicon glyphicon-user"></span></a>
-					      <a href="#"><span class="glyphicon glyphicon-refresh"></span></a>
- -->					      <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
-					      <!-- <a href="#"><span class="glyphicon glyphicon-print"></span></a> -->
+	      <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+							<a href="#"><span class="glyphicon glyphicon-edit"></span></a>
 					    </div>
 					</div>
 				</div>						
-			</div>
-			<div class= "col-md-9 col-md-offset-1 display top30">
+			</div> -->
+			<div class= "col-md-9 col-md-offset-1 display">
 				<div class="row">
-					<div class="checklist-title">
-						<%= @checklist.title %>
-					</div>
+					<h1 class="page-header">
+							<%= @checklist.title.titleize %>
+						</h1>	
+						<div class="btn-toolbar pull-right">
+							Crée par <%= @checklist.createur.capitalize %>
+						</div>
+						<p class="lead">
+							<%= @checklist.description.capitalize %>
+						</p>
 				</div>
 				<div class="row top30">
 					<div class="tasks-display">

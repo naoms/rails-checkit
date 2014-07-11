@@ -6,8 +6,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-<%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js" %>
-<%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js" %>
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js" %>
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js" %>
+  <%= javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" %> 
 
 </head>
 <body>
@@ -22,23 +23,51 @@
               <a href="/" class="navbar-brand">CheckIT</a>
             </div>
             <ul class="nav navbar-nav">
-              <li><a href="/checklists">Templates</a></li>
-              <li><a href="/checklists/new">Create new Checklist</a></li>                   
               <li class="dropdown">
-                  <a class="dropdown-toggle active" data-toggle="dropdown" href="#">
-                    Checklists en cours <span class="caret"></span>
+                  <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/en_cours">
+                    Checklists en Cours <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
-                    ...
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/en_cours">Checklist en Cours</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <% Checklist.all.each do |checklist|%>
+                      <% if checklist.progess == 1 %>
+                        <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.garant , checklist_path(checklist) %></li>
+                      <% end %>
+                    <% end %>
                   </ul>
                   
-              </li>                    
+              </li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/terminees">
+                    Checklists Terminées <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/terminees">Checklist Terminées</a></li>
+                    <li role="presentation" class="divider"></li>
+                   <% Checklist.all.each do |checklist|%>
+                    <% if checklist.progess == 2 %>
+                      <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.garant , checklist_path(checklist) %></li>  
+                      <% end %>
+                    <% end %>
+                  </ul>
+              </li>  
+               <li class="dropdown">
+                  <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/terminees">
+                    Templates <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/">Templates</a></li>
+                    <li role="presentation" class="divider"></li>
+                   <% Checklist.all.each do |checklist|%>
+                    <% if checklist.progess == 0 %>
+                      <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.createur , checklist_path(checklist) %></li>  
+                      <% end %>
+                    <% end %>
+                  </ul>
+              </li> 
+              <li><a href="/checklists/new">Create new Checklist</a></li>                                     
               </ul>
-<!--             <ul class="nav nav-pills">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/checklists/new">Create new Checklist</a></li>
-            <li><a href="/checklists/mytestchecklist">Nouvel Arrivant</a></li>
-            </ul> -->
           </div>
           </div>
       </div>

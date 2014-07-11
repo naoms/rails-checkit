@@ -1,0 +1,42 @@
+<div class="container">
+  <div class= "col-md-8 col-md-offset-2 top30 ">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="/main/index">Home</a></li>
+            <li><a href="/checklists/">Templates</a></li>
+            <li><%= @checklist.title.capitalize %></a></li>
+            <li class="active">Nom du garrant</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class= "col-md-8 col-md-offset-2 top30 ">
+    <div class="row">
+      <div class="col-md-12">
+<%= form_for @checklist do |f| %>
+
+    <div class="input-group input-group-lg">
+      <% f.label :garant %></h2>
+
+      <%= f.text_field :garant, :autofocus=>true, :autocomplete=>"off", :placeholder=>"Garant de cette checklist", :type=>"text", :class=>"form-control" %>
+
+      <span class="input-group-btn" >
+        <%= button_tag(type: 'submit', class: "btn btn-default btn-success" ) do %>
+        Commencer
+        <% end %>
+      </span>
+
+    </div><!-- /input-group --> 
+
+<% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

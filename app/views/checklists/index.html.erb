@@ -1,5 +1,5 @@
 <div class="container">
-	<div class= "col-md-8 col-md-offset-2 ">
+	<div class= "col-md-8 col-md-offset-2 top30">
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
@@ -11,14 +11,14 @@
 	</div>
 </div>
 <div class="container">
-	<div class= "col-md-12 col-md-offset-2 top30">
+	<div class= "col-md-12 col-md-offset-2">
 	<% n =0 %>
 	<div class="row new-checklist-row">
-		<div class="col-md-2 created-row"><!-- Column create -->
-			<div class="row">
-				<div class="empty-template">
+		<div class="col-md-2 created-row top30"><!-- Column create -->
+			<div class="row top30">
+				<div class="empty-template top30">
 					<p>
-						<%= link_to image_tag("plus.png", size: "30x30"), new_checklist_path %>
+						<center><%= link_to image_tag("plus.png", size: "30x30"), new_checklist_path %></center>
 					</p>	
 				</div>
 
@@ -26,16 +26,16 @@
 			<div class="row">
 				<div class="empty-template-text">
 					<p>
-						<%= link_to 'Create Own Template', new_checklist_path %>
+						<center><%= link_to 'Create Own Template', new_checklist_path %></center>
 					</p>	
 				</div>
 				
 			</div>			
 		</div>
-		<div class="col-md-7 template-row"><!-- Column templates -->
-			<p>
-			All templates
-			</p>
+		<div class="col-md-6 template-row"><!-- Column templates -->
+			<div class="page-header">
+				<h1>All templates</h1>
+			</div>
 			<div class="row template-checklist-row">
 				<% @checklists.each do |checklist| %>
 					<% if n%3 == 0  %>

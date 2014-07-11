@@ -11,22 +11,6 @@
 	</div>
 </div>
 
-
-<!-- Single button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    Action <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
-
-
 <div class="container">
 	<div class= "col-md-8 col-md-offset-2 ">
 		<p>
@@ -40,15 +24,15 @@
 				        <tr>
 				            <th>Title</th>
 				            <th>Description</th>
-				            <th>Started at</th>
-				            <th>Garant 
+				            <th>Started at
+				            <%= link_to '/checklists/en_cours', :class => 'button white' do %>
+										    <span class="glyphicon glyphicon-chevron-down"></span>
+							<% end %></th>
+				            <th>Garant
 				            <%= link_to '/checklists/en_cours_par_garant', :class => 'button white' do %>
 										    <span class="glyphicon glyphicon-chevron-down"></span>
-							<% end %></th>				           
-							<th>Createur
-				            <%= link_to '/checklists/en_cours_par_createur', :class => 'button white' do %>
-										    <span class="glyphicon glyphicon-chevron-down"></span>
-				            <% end %></th>
+							<% end %></th>
+				            <th>Createur</th>
 				            <th></th>
 				        </tr>
 				    </thead>

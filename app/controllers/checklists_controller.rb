@@ -21,13 +21,26 @@ class ChecklistsController < ApplicationController
 	    @tasks = Task.all
     end 
 
+
+    def nom_garant
+	    @checklist = Checklist.find(params[:checklist_id]) 
+    end
+
+
 	def en_cours
 		@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
 	end
 
+	def en_cours_par_garant
+		@checklists = Checklist.all.order('checklists."garant" desc','checklists."timeStarted" desc')
+	end
+
+	def en_cours_par_createur
+		@checklists = Checklist.all.order('checklists."createur" desc','checklists."timeStarted" desc')
+	end
 
 	def terminees
-		@checklists = Checklist.all.order('checklists."timeStarted" desc','checklists.created_at asc')
+		@checklists = Checklist.all.order('checklists."timeFinished" desc','checklists."timeStarted" desc')
 	end
 
 	def demaree
@@ -54,7 +67,7 @@ class ChecklistsController < ApplicationController
 	end
 
 	def start
-		@checklist = Checklist.find(params[:checklist_id])
+		@checklist = Checklist.find(params[:checklist_id])	
 		# @checklist.timeStarted = DateTime.now.to_formatted_s(:long_ordinal)
 		# @checklist.timeStarted
 		# @checklist.save
@@ -117,8 +130,15 @@ class ChecklistsController < ApplicationController
 	def destroy
 		@checklist = Checklist.find(params[:id])
 		@checklist.destroy
-	
-		redirect_to checklists_path
+
+		if @checklist.progess == 0 
+			redirect_to checklists_path
+		elsif @checklist.progess == 1
+			redirect_to checklists_en_cours_path
+		elsif @checklist.progess == 2
+			redirect_to checklists_terminees_path
+		end
+
 	end
 
 
@@ -131,7 +151,7 @@ class ChecklistsController < ApplicationController
     	@checklist.progess = '2' 
     	@checklist.save
 		@progress = @checklist.progess.to_i
-    	redirect_to root_path
+    	redirect_to checklist_path(@checklist)
     end
 
 

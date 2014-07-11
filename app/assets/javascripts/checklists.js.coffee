@@ -23,6 +23,8 @@ $ ->
 		#	$.post '/checklists/123/tasks/456/update_status',
 		#        checked: e.target.checked || 'false'
 	    #    	(data) -> alert 'hi'+data #$('body').append "Successfully posted to the page."
-
 			
+	$(document).ready(initialize)
 	$(document).on 'page:load', initialize
+
+	$('.dropdown-toggle').dropdown();

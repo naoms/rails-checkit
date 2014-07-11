@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   get 'taches/new'
 
   get 'checklists/en_cours'
-  
+
+  get 'checklists/en_cours_par_garant'
+
+  get 'checklists/en_cours_par_createur'
+
   get 'checklists/terminees'
 
   get 'main/index'
@@ -25,6 +29,7 @@ Rails.application.routes.draw do
         get 'start'
         post 'finish' 
         get 'test'
+        get 'nom_garant'
         resources :tasks do
           post 'update_status'
         end

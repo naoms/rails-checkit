@@ -11,7 +11,7 @@ class Checklist < ActiveRecord::Base
 
     def self.create_instance(template, garant)
         checklist = Checklist.new({ 
-        title: template.title + '-V' + template.template_version.to_s ,
+        title: template.title + ' - V' + template.template_version.to_s ,
     	description: template.description,
     	created_at: template.created_at,
     	updated_at: template.updated_at,
