@@ -61,7 +61,7 @@
                     <li role="presentation" class="divider"></li>
                    <% Checklist.all.each do |checklist|%>
                     <% if checklist.progess == 0 %>
-                      <li role="presentation"><%= link_to checklist.title + ' - ' + ( checklist.createur || 'Pas de createur') , checklist_path(checklist) %></li>  
+                      <li role="presentation"><%= link_to checklist.title + ' - ' + checklist.createur || 'Pas de createur', checklist_path(checklist) %></li>  
                       <% end %>
                     <% end %>
                   </ul>
