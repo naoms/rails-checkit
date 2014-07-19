@@ -65,7 +65,7 @@
 									 				<%= check_box_tag task.status, unchecked_value = !(task.status), checked_value = task.status, checklist: @checklist.id, taskid: task.id %>
 									 			</span>
 									 			<% if task.status == false %>
-													<input type="text" class="form-control task" placeholder='<%= task.description %>' disabled="disabled">
+													<input type="text" class="form-control task" placeholder='<%= task.description.capitalize %>' disabled="disabled">
 												<% elsif task.status == true %>
 													<input type="text" class="form-control task" placeholder='<%= task.description.capitalize %>' disabled="disabled">
 												<% end %>
