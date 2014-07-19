@@ -110,7 +110,7 @@
 								<% if @checklist.tasks.count > 0 %>
 									<p>
 										<button type="button" class="btn btn-default btn-lg glyphicon glyphicon-ok">
-											<%= link_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %>
+											<%= link_to "J'ai réalisé toutes les tâches", checklist_finish_path(@checklist), method: 'post' , data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'}%>
 										</button>
 									</p>
 								<% elsif @checklist.tasks.count == 0 && !(@checklist.description.blank?) %>
