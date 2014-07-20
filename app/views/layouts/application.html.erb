@@ -32,7 +32,11 @@
                     <li role="presentation" class="divider"></li>
                     <% Checklist.all.each do |checklist|%>
                       <% if checklist.progess == 1 %>
-                        <li role="presentation"><%= link_to checklist.title + ' - ' + (checklist.garant || 'pas de garant') , checklist_path(checklist) %></li>
+                        <% if checklist.garant.blank? %>
+                          <li role="presentation"><%= link_to checklist.title + ' - ' +  'Pas de garant' , checklist_path(checklist) %></li>
+                        <% else %>
+                          <li role="presentation"><%= link_to checklist.title + ' - ' + (checklist.garant) , checklist_path(checklist) %></li>
+                        <% end %>
                       <% end %>
                     <% end %>
                   </ul>
@@ -47,7 +51,11 @@
                     <li role="presentation" class="divider"></li>
                    <% Checklist.all.each do |checklist|%>
                     <% if checklist.progess == 2 %>
-                      <li role="presentation"><%= link_to checklist.title + ' - ' + (checklist.garant || 'pas de garant') , checklist_path(checklist) %></li>  
+                      <% if checklist.garant.blank? %>
+                          <li role="presentation"><%= link_to checklist.title + ' - ' +  'Pas de garant' , checklist_path(checklist) %></li>
+                        <% else %>
+                          <li role="presentation"><%= link_to checklist.title + ' - ' + (checklist.garant) , checklist_path(checklist) %></li>
+                        <% end %>
                       <% end %>
                     <% end %>
                   </ul>

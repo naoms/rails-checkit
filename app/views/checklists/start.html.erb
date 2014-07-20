@@ -10,7 +10,7 @@
 <% elsif  @checklist.tasks.count == 0 && !(@checklist.description.blank?) %> 
 	Description : <%= @checklist.description %><br>
 	<br><br>
-	<%= button_to "J'ai suivis la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
+	<%= button_to "J'ai suivi la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier. Elle ne sera plus dans vos checklist currente'} %> 
 
 <% elsif  @checklist.tasks.count > 0 && !(@checklist.description.blank?) %> 
 	Description : <%= @checklist.description %><br><br>

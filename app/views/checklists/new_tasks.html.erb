@@ -114,8 +114,8 @@
 									</p>
 								<% elsif @checklist.tasks.count == 0 && !(@checklist.description.blank?) %>
 									<p>
-										<%= link_to "J'ai suivis la description", :class => 'btn btn-default btn-lg', data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} do %>
-    											J'ai suivis la description <span class="glyphicon glyphicon-ok" ></span>
+										<%= link_to "J'ai suivi la description", :class => 'btn btn-default btn-lg', data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} do %>
+    											J'ai suivi la description <span class="glyphicon glyphicon-ok" ></span>
 										<% end %>
 									</p>
 								<% end %>

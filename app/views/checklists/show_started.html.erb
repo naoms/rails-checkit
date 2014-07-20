@@ -114,10 +114,10 @@
 										</button>
 									</p>
 								<% elsif @checklist.tasks.count == 0 && !(@checklist.description.blank?) %>
-									<p>
-										<%= link_to "J'ai suivis la description", :class => 'btn btn-default btn-lg', data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} do %>
-    											J'ai suivis la description <span class="glyphicon glyphicon-ok" ></span>
-										<% end %>
+	<p>
+										<button type="button" class="btn btn-default btn-lg glyphicon glyphicon-ok">
+											<%= link_to "J'ai suivi la description", checklist_finish_path(@checklist), method: 'post' , data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'}%>
+										</button>
 									</p>
 								<% end %>
 							</p>
@@ -238,7 +238,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row"> 
 					<div class="display-save">
 						<% if @checklist.progess == 1 %>
 							<p>
@@ -248,7 +248,7 @@
 									</p>
 								<% elsif @checklist.tasks.count == 0 && !(@checklist.description.blank?) %>
 									<p>
-										<%= button_to "J'ai suivis la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
+										<%= button_to "J'ai suivi la description", checklist_finish_path(@checklist), data: {confirm: 'La checklist est términée. Vous ne pourrez plus la modifier.'} %> 
 									</p>
 								<% end %>
 							</p>
