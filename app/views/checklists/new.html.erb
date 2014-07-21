@@ -4,8 +4,8 @@
       <div class="col-md-12">
         <ol class="breadcrumb">
             <li><a href="/main/index">Home</a></li>
-            <li><a href="/checklists/">Templates</a></li>
-            <li class="active">Creating checklist</li>
+            <li><a href="/checklists/">Modèles</a></li>
+            <li class="active">Créer modèle</li>
         </ol>
       </div>
     </div>
@@ -33,7 +33,7 @@
           <div class="col-md-5">
             <div class="input-group input-group-lg">
               <% f.label :title %>
-              <%= f.text_field :title, :placeholder => " Title ", :type => "text", :class => "form-control", :autofocus => true, :autocomplete=>"off"%>
+              <%= f.text_field :title, :placeholder => " Titre", :type => "text", :class => "form-control", :autofocus => true, :autocomplete=>"off"%>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="col-md-12">
           <div class="lead">
             <% f.label :description %>
-            <%= f.text_field :description, :placeholder => " Add a description to your Checklist ",:type => "text", :class => "form-control", :autocomplete => "off" %>
+            <%= f.text_field :description, :placeholder => " Ajoute une description à la checklist ",:type => "text", :class => "form-control", :autocomplete => "off" %>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
           <div class="input-group">
             <span class="input-group-addon">@</span>
             <% f.label :createur %>
-            <%= f.text_field :createur, :placeholder => " Createur", :type => "text", :class => "form-control" %>
+            <%= f.text_field :createur, :placeholder => " Créateur", :type => "text", :class => "form-control" %>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
         <div class="col-md-12">
           <span class="input-group-btn" >
             <%= button_tag(type: 'submit', class: "btn btn-primary" ) do %>
-            Add tasks to checklist
+              Ajouter des tâches à la checklist
             <% end %>
           </span>
         </div>

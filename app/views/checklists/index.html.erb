@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<ol class="breadcrumb">
 						<li><a href="/main/index">Home</a></li>
-						<li class="active"><a href="/checklists">Templates</a></li>
+						<li class="active"><a href="/checklists">Modèles</a></li>
 				</ol>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="empty-template-text">
 					<p>
-						<center><%= link_to 'Create Own Template', new_checklist_path %></center>
+						<center><%= link_to 'Créer ton modèle', new_checklist_path %></center>
 					</p>	
 				</div>
 				
@@ -34,52 +34,47 @@
 		</div>
 		<div class="col-md-6 template-row"><!-- Column templates -->
 			<div class="page-header">
-				<h1>All templates</h1>
+				<h1>Tout les modèles</h1>
 			</div>
 			<div class="row template-checklist-row">
-				<% @checklists.each do |checklist| %>
-					<% if n%3 == 0  %>
-							</div><div class="row template-checklist-row">
-					<% end %>
-					<% if checklist.progess == 0 %>  <!-- if checklist created -->
-						<div class="col-md-3 template-box" >
-							<% n = n+1 %>
-							<div class="row display-title">
-								<p>
-									<%=link_to checklist.title, checklist_path(checklist) %>
-									<!-- <%= link_to image_tag("start.png", size: "20x20"), checklist_path(checklist) %> -->
-								</p>
-							</div>
-							<div class="row display-description">
-								<p>
-									<%=checklist.description %>
-								</p>
-							</div>	
-							<div class="row">
-								<p>
-									<% if checklist.createur != nil %>
-										<% if checklist.createur.length > 15 %>
-											<div class="row display-createur-long">
-												Créee par <%= checklist.createur  %>
-											</div>
-										<% elsif checklist.createur.length < 15 %>
-											<div class="row display-createur-short">
-												Créee par <%= checklist.createur %>
-											</div>
+
+
+			<table class="table table-striped table-condensed">
+				    <thead>
+				        <tr>
+				            <th>Titre</th>
+				            <th>Description</th>			           
+							<th>Créateur</th>
+				            <th></th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    	<% @checklists.each do |checklist| %>
+				    		<% if checklist.progess == 0 %>   <!-- if checklist started -->
+						        <tr>
+						            <td><%=link_to checklist.title, checklist_path(checklist) %></td>
+						            <td>
+						            	<% if checklist.description.blank? %>
+											Pas de description <br>
+										<% else %>
+											<%= checklist.description %><br>
 										<% end %>
-									<% end %>
-								</p>
-							</div>		
-							<div class="row display-poubelle">
-								<p>
-									<%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
-						              method: :delete,
-						             data: { confirm: 'Are you sure?' } %> 
-								</p>
-							</div>																			
-						</div>
-					<% end %>
-				<% end %>
+						            </td>
+						            <td>
+						            	<% if !(checklist.createur.blank?) %>
+											<h6 id="createur" font-size:"1"><%= checklist.createur %></h6>
+										<% else %>
+											Pas de nom
+										<% end %>
+									</td>
+						            <td><%= link_to image_tag("delete.png", size: "15x15"), checklist_path(checklist),
+							              method: :delete,
+							             data: { confirm: 'Etes vous sûr?' } %></td>
+						        </tr>
+					        <% end %>
+				    	<% end %>
+				    </tbody>
+				</table>
 			</div>
 		</div>
 	</div>

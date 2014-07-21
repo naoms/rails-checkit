@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  root 'main#index'
 
   get 'checklists/mytestchecklist'
 
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
   get 'checklists/terminees'
 
   get 'main/index'
+
+  root 'checklists#en_cours'
 
   #match 'checklists/start/:id' => 'checklists#start', via: [:get]
   #get 'checklists/start/:id', to: 'checklists#start'

@@ -52,7 +52,7 @@
 				<div class="row">
 						<% if @checklist.tasks.count == 0 %>    
 							<p>
-						    	No tasks 
+						    	Pas de tâches 
 						    </p>
 						<% elsif  @checklist.tasks.count > 0 %> 
 								<% n =0 %>
@@ -60,7 +60,7 @@
 										<div class="input-group input-group-lg">
 												<span class="input-group-addon"><%= link_to image_tag("delete.png", size: "15x15"), checklist_task_path(@checklist, task),
 								              method: :delete,
-								             data: { confirm: 'Are you sure?' } %></span>
+								             data: { confirm: 'Etes vous sûr?' } %></span>
 								             <% if @checklist.progess == 1 %>
 												<span class="input-group-addon checklist-details-task">
 									 				<%= check_box_tag task.status, unchecked_value = !(task.status), checked_value = task.status, checklist: @checklist.id, taskid: task.id %>

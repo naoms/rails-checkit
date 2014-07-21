@@ -30,7 +30,7 @@
                   <ul class="dropdown-menu" role="menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/en_cours">Checklist en Cours</a></li>
                     <li role="presentation" class="divider"></li>
-                    <% Checklist.all.each do |checklist|%>
+                    <% Checklist.all.order('checklists."timeStarted" desc').each do |checklist|%>
                       <% if checklist.progess == 1 %>
                         <% if checklist.garant.blank? %>
                           <li role="presentation"><%= link_to checklist.title + ' - ' +  'Pas de garant' , checklist_path(checklist) %></li>
@@ -49,7 +49,7 @@
                   <ul class="dropdown-menu" role="menu">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/terminees">Checklist Terminées</a></li>
                     <li role="presentation" class="divider"></li>
-                   <% Checklist.all.each do |checklist|%>
+                   <% Checklist.all.order('checklists."timeFinished" desc').each do |checklist|%>
                     <% if checklist.progess == 2 %>
                       <% if checklist.garant.blank? %>
                           <li role="presentation"><%= link_to checklist.title + ' - ' +  'Pas de garant' , checklist_path(checklist) %></li>
@@ -62,10 +62,10 @@
               </li>  
                <li class="dropdown">
                   <a class="dropdown-toggle active" data-toggle="dropdown" href="/checklists/terminees">
-                    Templates <span class="caret"></span>
+                    Modèles <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/">Templates</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/">Modèles</a></li>
                     <li role="presentation" class="divider"></li>
                    <% Checklist.all.each do |checklist|%>
                     <% if checklist.progess == 0 %>
@@ -74,7 +74,7 @@
                     <% end %>
                   </ul>
               </li> 
-              <li><a href="/checklists/new">Create new Checklist</a></li>                                     
+              <li><a href="/checklists/new">Créer un Modèle</a></li>                                     
               </ul>
           </div>
           </div>

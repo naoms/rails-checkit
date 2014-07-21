@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<ol class="breadcrumb">
 						<li><a href="/main/index">Home</a></li>
-						<li><a href="/checklists">Templates</a></li>
+						<li><a href="/checklists">Modèles</a></li>
   						<li class="active"><%= @checklist.title.titleize %></li>
 				</ol>
 			</div>
@@ -46,7 +46,7 @@
 
 						<% if @checklist.tasks.count == 0 %>    
 							<p>
-						    	No tasks 
+						    	Pas de tâches 
 						    </p>
 						<% elsif  @checklist.tasks.count > 0 %> 
 
@@ -66,7 +66,7 @@
 						<div class="btn-toolbar pull-right top30 bottom30" role="toolbar">
 					    	<div class="btn-group">
 					    		<%= link_to ' Supprimer', checklist_path(@checklist), 
-					    		method: :delete, data: { confirm: 'Are you sure?' },
+					    		method: :delete, data: { confirm: 'Etes vous sûr?' },
 					    		:class =>"btn btn-danger glyphicon glyphicon-trash", 
 					    		:type => "button",
 					    		:style => "height:34px" %>

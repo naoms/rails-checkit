@@ -5,7 +5,7 @@
  
 <% if @checklist.tasks.count == 0 && @checklist.description.blank? %>    
     
-    No tasks 
+    Pas de tâches 
 
 <% elsif  @checklist.tasks.count == 0 && !(@checklist.description.blank?) %> 
 	Description : <%= @checklist.description %><br>
