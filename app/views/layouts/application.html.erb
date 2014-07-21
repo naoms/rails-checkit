@@ -28,7 +28,7 @@
                     Checklists en Cours <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/en_cours">Checklist en Cours</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/en_cours">Checklists en Cours</a></li>
                     <li role="presentation" class="divider"></li>
                     <% Checklist.all.order('checklists."timeStarted" desc').each do |checklist|%>
                       <% if checklist.progess == 1 %>
@@ -47,7 +47,7 @@
                     Checklists Terminées <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/terminees">Checklist Terminées</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/checklists/terminees">Checklists Terminées</a></li>
                     <li role="presentation" class="divider"></li>
                    <% Checklist.all.order('checklists."timeFinished" desc').each do |checklist|%>
                     <% if checklist.progess == 2 %>
